@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="mywebsite.css">
+    <title>My website</title>
+
+</head>
+<body>
+    <h1 id="header"> My website
+        <img id="htmlimageHeader" src="html_image.png">
+    </h1>
+
+    <div class="container">
+        <div class="header"><~Fantastic header~></div>
+        <div class="menu">
+            <div>Menu</div>
+            <ul id="menu">
+                <li class="menuelement"><a href="#">Item 1</a></li>
+                <li class="menuelement"><a href="#">Item 2</a></li>
+                <li class="menuelement"><a href="#">Item 3</a></li>
+
+                <button id="button1" class="buttons" onclick="buttonOnePressed(this)">Count</button>
+                <button id="button2" class="buttons" onclick="hideContent('footer')">Footer</button>
+                <button id="button3" class="buttons" onclick="showArray()">Array</button>
+            </ul>
+        </div>
+        <div class="main">
+            <div>Main</div>
+
+            <div id="pContainer">
+                This is my first website. It was made in
+                conjunction with an assignment. Hope this looks
+                good enough. I am writing a lot of text to test
+                how it looks.
+            </div>
+        </div>
+        <div class="right" id="right">
+            <img id="htmlimage" src="html_image.png">
+            <ul id="arrayUnorderedList"></ul>
+        </div>
+        <div class="footer">
+            <div id="footer">This is a footer.</div>
+            <br>
+            <div id="rights">All rights reserved Magnus Farstad</div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
