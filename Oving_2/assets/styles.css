@@ -1,0 +1,168 @@
+body {
+    align-items: center;
+}
+
+#calculatorContainer {
+    display: grid;
+    grid-template-areas:
+    "display display display display"
+    "c ans del plus"
+    "one two three subtract"
+    "four five six multiply"
+    "seven eight nine divide"
+    "empty zero point equals"
+    "log log log log";
+    background-color: #eee;
+    padding: 7px;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    width: 40%;
+    font-size: 40px;
+    grid-auto-rows: minmax(50px, auto);
+    box-shadow: 0 0 16px #363535;
+    }
+
+.headerContainer {
+    margin: 40px auto;
+    text-align: center;
+}
+
+.button {
+    background-color: rgba(215, 215, 215, 0.96);
+    margin: 2px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+    height: 60px;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #ffffff;
+}
+
+.button:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+#scrollBox {
+    overflow: scroll;
+    border: solid black;
+    margin-top: 10px;
+    height: 400px;
+    background-color: rgba(255, 165, 0, 0.14);
+}
+
+.header {
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.text {
+}
+
+.display {
+    grid-area: display;
+    margin-bottom: 10px;
+    background-color: #363535;
+    color: white;
+    outline: none;
+    border: solid black;
+    text-shadow: 0 0 17px #363535;
+}
+
+.c {
+    grid-area: c;
+}
+
+.ans {
+    grid-area:ans;
+}
+
+.del {
+    grid-area: del;
+}
+
+.plus {
+    grid-area: plus;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three {
+    grid-area: three;
+}
+
+.subtract {
+    grid-area: subtract;
+}
+
+.four {
+    grid-area: four;
+}
+
+.five {
+    grid-area: five;
+}
+
+.six {
+    grid-area: six;
+}
+
+.multiply {
+    grid-area: multiply;
+}
+
+.seven {
+    grid-area: seven;
+}
+
+.eight {
+    grid-area: eight;
+}
+
+.nine {
+    grid-area: nine;
+}
+
+.divide {
+    grid-area: divide;
+}
+
+.empty {
+    grid-area: empty;
+}
+
+.zero {
+    grid-area: zero;
+}
+
+.point {
+    grid-area: point;
+}
+
+.equals {
+    grid-area: equals;
+    background-color: orange;
+}
+
+.equals:hover {
+    background-color: rgba(255, 165, 0, 0.69);
+}
+
+.log {
+    grid-area: log;
+}
+

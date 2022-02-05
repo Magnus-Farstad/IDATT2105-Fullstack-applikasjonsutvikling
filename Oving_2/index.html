@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="headerContainer">
+        <h1 class="header">Calculator</h1>
+        <div class="text">This is a calculator</div>
+    </div>
+    <div id="calculatorContainer">
+        <calculator @add-equations="addEquation"></calculator>
+        <log :equations="equations"></log>
+    </div>
+</div>
+
+<script src="main.js"></script>
+
+<script src="./components/Calculator.js"></script>
+<script src="./components/Log.js"></script>
+
+<script>
+    const mountedApp = app.mount('#app')
+</script>
+</body>
+</html>
