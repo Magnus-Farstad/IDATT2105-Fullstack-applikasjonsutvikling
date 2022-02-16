@@ -1,0 +1,135 @@
+@media (min-width: 481px) {
+    .container {
+        display: grid;
+        grid-template-areas:
+        "header header header header header header"
+        "menu main main main right right"
+        "menu footer footer footer footer footer";
+        grid-gap: 5px;
+        background-color: #81878a;
+        padding: 7px;
+        height: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        display: grid;
+        grid-template-areas:
+        "header"
+        "menu"
+        "main"
+        "right"
+        "footer";
+        grid-gap: 10px;
+        background-color: #81878a;
+        padding: 10px;
+        height: 100%;
+    }
+}
+
+.container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+}
+
+#menu {
+    float: left;
+    width: 100%;
+    padding: 0px;
+    margin: 3px;
+    list-style-type: none;
+}
+
+.menuelement {
+    float: left;
+    width: 80%;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 2px;
+    background-color: lightgray;
+    color: white;
+}
+
+.menuelement:hover {
+    background-color: blanchedalmond;
+}
+
+a {
+    color: black;
+}
+
+.header {
+    grid-area: header;
+    font-style: oblique;
+    font-weight: bold;
+}
+.menu {
+    grid-area: menu;
+    width: 200px;
+}
+
+#pContainer {
+    float: left;
+    text-align: left;
+    width: 80%;
+    padding: 20px;
+    margin: 2px;
+}
+
+.main {
+    grid-area: main;
+}
+.right {
+    grid-area: right;
+    max-width: 300px;
+    min-height: 250px;
+}
+
+#arrayUnorderedList {
+    font-size: 15px;
+    width: 50px;
+    margin: 10px;
+    padding: 0px 0px 0px 20px;
+}
+
+.footer {
+    grid-area: footer;
+    height: available;
+}
+
+#divArray {
+    font-size: medium;
+}
+
+#header {
+    width: 200px;
+    color: white;
+    font-style: revert;
+    padding: 4px;
+    border: solid black;
+    background-image: url("../Øving_1_Fullstack/html_image.png");
+}
+
+#htmlimageHeader {
+    float: right;
+    height: 30px;
+}
+
+#htmlimage {
+    height: 100px;
+    margin: 10px;
+}
+
+#rights {
+    font-size: small;
+}
+
+.buttons {
+    float: top;
+    width: 170px;
+    height: 30px;
+
+}
