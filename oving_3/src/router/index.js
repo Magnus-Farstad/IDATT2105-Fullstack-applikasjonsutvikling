@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import ContactForm from "../views/ContactForm.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/contact",
+    name: "ContactForm",
+    component: ContactForm,
   },
   {
     path: "/about",
