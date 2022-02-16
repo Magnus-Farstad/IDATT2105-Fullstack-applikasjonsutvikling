@@ -34,8 +34,9 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (this.name === "" || this.email === "" || this.review === "") {
-        return;
+      if (!this.isValid()) {
+        alert("Numbers are not allowed in field Name");
+        return
       }
       let productReview = {
         name: this.name,
@@ -47,6 +48,12 @@ export default {
       this.name = "";
       this.email = "";
       this.review = "";
+    },
+    isValid() {
+      let matches = this.name.match(/\d+/g);
+      return matches == null;
+
+
     },
   },
   computed: {
