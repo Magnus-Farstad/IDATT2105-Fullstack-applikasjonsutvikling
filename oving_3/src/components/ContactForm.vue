@@ -8,7 +8,6 @@
       <label>E-mail</label>
       <input id="email" v-model="email" />
 
-
       <label for="review">Review:</label>
       <textarea id="review" v-model="review"></textarea>
 
@@ -20,6 +19,27 @@
 <script>
 export default {
   name: "ContactForm",
+  data() {
+    return {
+      name: "",
+      email: "",
+      review: "",
+    };
+  },
+  methods: {
+    onSubmit() {
+      let productReview = {
+        name: this.name,
+        email: this.email,
+        review: this.review,
+      };
+      this.$emit("review-submitted", productReview);
+
+      this.name = "";
+      this.email = "";
+      this.review = "";
+    },
+  },
 };
 </script>
 
@@ -30,7 +50,7 @@ export default {
 }
 
 .button {
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 input {
