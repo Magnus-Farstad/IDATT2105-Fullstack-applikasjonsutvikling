@@ -11,7 +11,13 @@
       <label for="review">Review:</label>
       <textarea id="review" v-model="review"></textarea>
 
-      <input class="button" type="submit" value="Submit" />
+      <input
+        :disabled="isDisabled"
+        class="button"
+        :class="{ disabledButton: isDisabled }"
+        type="submit"
+        value="Submit"
+      />
     </form>
   </div>
 </template>
@@ -28,6 +34,9 @@ export default {
   },
   methods: {
     onSubmit() {
+      if (this.name === "" || this.email === "" || this.review === "") {
+        return;
+      }
       let productReview = {
         name: this.name,
         email: this.email,
@@ -38,6 +47,11 @@ export default {
       this.name = "";
       this.email = "";
       this.review = "";
+    },
+  },
+  computed: {
+    isDisabled() {
+      return this.name === "" || this.email === "" || this.review === "";
     },
   },
 };
@@ -51,6 +65,11 @@ export default {
 
 .button {
   margin-top: 10px;
+}
+
+.disabledButton {
+  background-color: #d8d8d8;
+  cursor: not-allowed;
 }
 
 input {
