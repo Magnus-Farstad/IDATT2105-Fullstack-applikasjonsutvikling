@@ -20,7 +20,7 @@
       />
     </form>
     <!--  <div>{{ $store.state.reviews }}</div>  -->
-    <div>{{ status }}</div>
+    <div>{{ $store.state.status }}</div>
   </div>
 </template>
 
@@ -35,7 +35,6 @@ export default {
       email: "",
       review: "",
       id: "",
-      status: "",
     };
   },
   methods: {
@@ -45,6 +44,7 @@ export default {
         return;
       }
       this.showStatusMessage();
+
       this.id = uuidv4();
       let productReview = {
         name: this.name,
@@ -64,9 +64,9 @@ export default {
       return matches == null;
     },
     showStatusMessage() {
-      this.status = "sender...";
+      this.$store.dispatch("updateStatus", "sender...");
       setTimeout(() => {
-        this.status = "sendt!";
+        this.$store.dispatch("updateStatus", "Sendt!");
       }, 2000);
     },
   },
