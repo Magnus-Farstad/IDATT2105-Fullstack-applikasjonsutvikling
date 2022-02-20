@@ -19,11 +19,12 @@
         value="Submit"
       />
     </form>
+    <div>{{ $store.state.reviews }}</div>
   </div>
 </template>
 
 <script>
-import { v4 as uuidv4 } from "uuid"
+import { v4 as uuidv4 } from "uuid";
 
 export default {
   name: "ContactForm",
@@ -48,7 +49,9 @@ export default {
         review: this.review,
         id: this.id,
       };
-      this.$emit("review-submitted", productReview);
+      this.$store.dispatch("createReview", productReview);
+
+      //this.$emit("review-submitted", productReview);
 
       this.name = "";
       this.email = "";
