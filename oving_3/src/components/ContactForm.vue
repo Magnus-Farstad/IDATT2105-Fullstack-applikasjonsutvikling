@@ -19,7 +19,8 @@
         value="Submit"
       />
     </form>
-    <div>{{ $store.state.reviews }}</div>
+    <!--  <div>{{ $store.state.reviews }}</div>  -->
+    <div>{{ status }}</div>
   </div>
 </template>
 
@@ -34,6 +35,7 @@ export default {
       email: "",
       review: "",
       id: "",
+      status: "",
     };
   },
   methods: {
@@ -42,6 +44,7 @@ export default {
         alert("Numbers are not allowed in field Name");
         return;
       }
+      this.showStatusMessage();
       this.id = uuidv4();
       let productReview = {
         name: this.name,
@@ -51,8 +54,6 @@ export default {
       };
       this.$store.dispatch("createReview", productReview);
 
-      //this.$emit("review-submitted", productReview);
-
       this.name = "";
       this.email = "";
       this.review = "";
@@ -61,6 +62,12 @@ export default {
     isValid() {
       let matches = this.name.match(/\d+/g);
       return matches == null;
+    },
+    showStatusMessage() {
+      this.status = "sender...";
+      setTimeout(() => {
+        this.status = "sendt!";
+      }, 2000);
     },
   },
   computed: {
