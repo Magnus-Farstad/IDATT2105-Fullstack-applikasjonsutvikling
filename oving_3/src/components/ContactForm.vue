@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from "uuid"
+
 export default {
   name: "ContactForm",
   data() {
@@ -30,30 +32,32 @@ export default {
       name: "",
       email: "",
       review: "",
+      id: "",
     };
   },
   methods: {
     onSubmit() {
       if (!this.isValid()) {
         alert("Numbers are not allowed in field Name");
-        return
+        return;
       }
+      this.id = uuidv4();
       let productReview = {
         name: this.name,
         email: this.email,
         review: this.review,
+        id: this.id,
       };
       this.$emit("review-submitted", productReview);
 
       this.name = "";
       this.email = "";
       this.review = "";
+      this.id = "";
     },
     isValid() {
       let matches = this.name.match(/\d+/g);
       return matches == null;
-
-
     },
   },
   computed: {
