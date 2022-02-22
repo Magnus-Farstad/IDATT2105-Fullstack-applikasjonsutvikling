@@ -2,7 +2,8 @@
   <div id="nav">
     <router-link :to="{ name: 'Home' }">Home</router-link> |
     <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
-    <router-link :to="{ name: 'About' }">About</router-link>
+    <router-link :to="{ name: 'About' }">About</router-link> |
+    <router-link :to="{ name: 'LogIn' }">Log in</router-link>
   </div>
   <router-view />
 </template>

@@ -2,7 +2,6 @@
   <div class="home">
     <div class="headerContainer">
       <h1 class="header">Calculator</h1>
-      <div class="text">This is a calculator</div>
     </div>
     <div id="calculatorContainer">
       <calculator @add-equations="addEquation"></calculator>

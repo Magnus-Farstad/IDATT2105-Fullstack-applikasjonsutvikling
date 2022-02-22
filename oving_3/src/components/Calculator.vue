@@ -165,7 +165,7 @@ export default {
 }
 
 .ans {
-  grid-area:ans;
+  grid-area: ans;
 }
 
 .del {
