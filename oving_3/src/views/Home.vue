@@ -70,7 +70,6 @@ body {
   text-align: center;
 }
 
-
 .header {
   font-size: 50px;
   font-weight: 900;
@@ -78,7 +77,4 @@ body {
 
 .text {
 }
-
-
-
 </style>

@@ -244,5 +244,4 @@ export default {
 .equals:hover {
   background-color: rgba(255, 165, 0, 0.69);
 }
-
 </style>
