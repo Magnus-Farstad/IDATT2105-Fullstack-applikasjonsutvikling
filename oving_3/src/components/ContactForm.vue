@@ -1,12 +1,14 @@
 <template>
   <div class="contact-form">
+    <h1>Leave a review!</h1>
     <form class="review-form" @submit.prevent="onSubmit">
-      <h3>Leave a review</h3>
-      <label for="name">Name:</label>
-      <input id="name" v-model="name" />
+      <h3>Name and E-mail</h3>
 
-      <label>E-mail</label>
-      <input id="email" v-model="email" />
+      <BaseInput v-model="name" label="Name" type="text" />
+
+      <BaseInput v-model="email" label="E-mail" type="text" />
+
+      <h3>Review</h3>
 
       <label for="review">Review:</label>
       <textarea id="review" v-model="review"></textarea>
@@ -19,16 +21,20 @@
         value="Submit"
       />
     </form>
-    <!--  <div>{{ $store.state.reviews }}</div>  -->
-    <div>{{ $store.state.status }}</div>
+    <div class="footer">
+      <div class="helper">{{ $store.state.reviews }}</div>
+      <div class="status">{{ $store.state.status }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from "uuid";
+import BaseInput from "@/components/BaseInput";
 
 export default {
   name: "ContactForm",
+  components: { BaseInput },
   data() {
     return {
       name: "",
@@ -82,6 +88,8 @@ export default {
 .contact-form {
   margin: 0 auto;
   align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .button {
