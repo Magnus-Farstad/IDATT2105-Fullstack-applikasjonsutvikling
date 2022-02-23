@@ -16,11 +16,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "LoginComponent",
   methods: {
-    handleClickSignin() {
+    async handleClickSignin() {
       alert("You entered the username: " + this.username);
+      const loginRequest = { username: this.username, password: this.password };
+      const loginResponse = await axios.post(
+        "http://localhost:8085/login",
+        loginRequest
+      );
+      alert("Login " + loginResponse.data);
     },
   },
   data() {
