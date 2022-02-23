@@ -3,7 +3,9 @@
     <div id="loginTitle">
       <label>Please login!</label>
     </div>
-    <label id="loginStatusLabel" v-if="!loginSuccess">Login: {{ loginstatus }}</label>
+    <label id="loginStatusLabel" v-if="!loginSuccess"
+      >Login: {{ loginstatus }}</label
+    >
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <textarea v-model="username"></textarea>
@@ -38,12 +40,18 @@ export default {
 
       if (this.loginstatus === "Success") {
         this.loginSuccess = true;
+
+        this.$store.dispatch("updateFlashMessage", "Login was Successful!");
+        setTimeout(() => {
+          this.$store.dispatch("updateFlashMessage", "");
+        }, 3000);
+
         this.$router.push({
           name: "Home",
         });
       } else {
         this.loginSuccess = false;
-        console.log("Inside else bracket")
+        console.log("Inside else bracket");
       }
     },
   },
@@ -70,7 +78,6 @@ export default {
   font-weight: bold;
   margin-bottom: 20px;
 }
-
 #loginStatusLabel {
   margin-bottom: 1rem;
 }

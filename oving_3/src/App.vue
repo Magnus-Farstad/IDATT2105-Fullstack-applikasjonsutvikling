@@ -1,4 +1,5 @@
 <template>
+  <div id="flashMessage" v-if="$store.state.flashMessage">{{ $store.state.flashMessage }}</div>
   <div id="nav">
     <router-link :to="{ name: 'Home' }">Home</router-link> |
     <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
@@ -9,6 +10,15 @@
 </template>
 
 <style>
+@keyframes yellowfade {
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
+
 body {
   align-items: center;
 }
@@ -19,6 +29,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#flashMessage {
+  animation-name: yellowfade;
+  animation-duration: 3s;
 }
 
 #nav {

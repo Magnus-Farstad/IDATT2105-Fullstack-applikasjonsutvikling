@@ -37,6 +37,11 @@ export default {
   },
   methods: {
     handleRegister() {
+      this.$store.dispatch("updateFlashMessage", "Register was Successful!");
+      setTimeout(() => {
+        this.$store.dispatch("updateFlashMessage", "");
+      }, 3000);
+
       this.$router.push({
         name: "Home",
       });
