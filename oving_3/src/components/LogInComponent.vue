@@ -3,6 +3,7 @@
     <div id="loginTitle">
       <label>Please login!</label>
     </div>
+    <label id="loginStatusLabel" v-if="!loginSuccess">Login: {{ loginstatus }}</label>
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <textarea v-model="username"></textarea>
@@ -11,6 +12,10 @@
       <label id="passwordLabel">Password: </label>
       <textarea v-model="password"></textarea>
       <button @click="handleClickSignin">Sign in</button>
+    </div>
+    <div class="registerContainer" v-if="!loginSuccess">
+      <div class="notRegistered">Not yet registered?</div>
+      <router-link :to="{ name: 'Register' }">Register</router-link>
     </div>
   </div>
 </template>
@@ -22,19 +27,32 @@ export default {
   name: "LoginComponent",
   methods: {
     async handleClickSignin() {
-      alert("You entered the username: " + this.username);
+      //alert("You entered the username: " + this.username);
       const loginRequest = { username: this.username, password: this.password };
       const loginResponse = await axios.post(
-        "http://localhost:8085/login",
+        "http://localhost:8085/demo/login",
         loginRequest
       );
-      alert("Login " + loginResponse.data);
+      console.log("Login " + loginResponse.data.loginStatus);
+      this.loginstatus = loginResponse.data.loginStatus;
+
+      if (this.loginstatus === "Success") {
+        this.loginSuccess = true;
+        this.$router.push({
+          name: "Home",
+        });
+      } else {
+        this.loginSuccess = false;
+        console.log("Inside else bracket")
+      }
     },
   },
   data() {
     return {
       username: "",
       password: "",
+      loginstatus: "",
+      loginSuccess: true,
     };
   },
 };
@@ -53,6 +71,10 @@ export default {
   margin-bottom: 20px;
 }
 
+#loginStatusLabel {
+  margin-bottom: 1rem;
+}
+
 #username,
 #password {
   display: flex;
@@ -64,5 +86,16 @@ export default {
 #usernameLabel,
 #passwordLabel {
   width: 100px;
+}
+
+.registerContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.notRegistered {
+  margin-right: 0.5rem;
 }
 </style>
