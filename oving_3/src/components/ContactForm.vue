@@ -22,7 +22,7 @@
       />
     </form>
     <div class="footer">
-<!--      <div class="helper">{{ $store.state.reviews }}</div>-->
+      <!--      <div class="helper">{{ $store.state.reviews }}</div>-->
       <div class="status">{{ $store.state.status }}</div>
     </div>
   </div>
@@ -31,6 +31,7 @@
 <script>
 import { v4 as uuidv4 } from "uuid";
 import BaseInput from "@/components/BaseInput";
+//import { useField } from "vee-validate";
 
 export default {
   name: "ContactForm",
@@ -49,6 +50,25 @@ export default {
         alert("Numbers are not allowed in field Name");
         return;
       }
+
+      const regex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!regex.test(String(this.email).toLowerCase())) {
+        alert("Please enter a valid email address");
+        return "Please enter a valid email address";
+      }
+      // const email = useField("email", function (value) {
+      //   if (!value) return "This field is required";
+      //
+      //   const regex =
+      //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      //   if (!regex.test(String(value).toLowerCase())) {
+      //     return "Please enter a valid email address";
+      //   }
+      //
+      //   return true;
+      // });
+
       this.showStatusMessage();
 
       this.id = uuidv4();
