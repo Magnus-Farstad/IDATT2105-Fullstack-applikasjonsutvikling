@@ -17,8 +17,9 @@ export default createStore({
     SET_FLASHMESSAGE(state, message) {
       state.flashMessage = message;
     },
-    SET_LOGINSTATUS(state, status) {
-      state.loginStatus = status;
+    SET_LOGINSTATUS(state, loginstatus) {
+      state.loginStatus = loginstatus;
+      console.log("From inside store " + state.loginStatus);
     },
   },
   actions: {
@@ -31,9 +32,14 @@ export default createStore({
     updateFlashMessage({ commit }, message) {
       commit("SET_FLASHMESSAGE", message);
     },
-    updateLoginStatus({ commit }, status) {
-      commit("SET_LOGINSTATUS", status);
+    updateLoginStatus({ commit }, loginstatus) {
+      commit("SET_LOGINSTATUS", loginstatus);
     },
+  },
+  getters: {
+    getLoginStatus(state) {
+      return state.loginStatus;
+    }
   },
   modules: {},
 });

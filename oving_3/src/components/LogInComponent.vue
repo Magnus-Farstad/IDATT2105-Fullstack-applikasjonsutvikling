@@ -3,7 +3,7 @@
     <div id="loginTitle">
       <label data-testid="loginLabel">Please login!</label>
     </div>
-    <label id="loginStatusLabel">{{ loginstatus }}</label>
+    <label id="loginStatusLabel">{{ $store.state.loginStatus }}</label>
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <input id="usernameInput" v-model="username" />
@@ -36,7 +36,11 @@ export default {
       this.handleClickSignin2();
       const loginResponse = await doLogin(loginRequest);
       console.log("Login " + loginResponse.loginStatus);
-      this.loginstatus = loginResponse.loginStatus;
+      //this.loginstatus = loginResponse.loginStatus;
+
+      this.$store.dispatch("updateLoginStatus", loginResponse.loginStatus);
+
+      this.loginstatus = this.$store.getters.getLoginStatus;
 
       if (this.loginstatus === "Success") {
         this.loginSuccess = true;
@@ -51,7 +55,6 @@ export default {
         });
       } else {
         this.loginSuccess = false;
-        console.log("Inside else bracket");
       }
     },
     handleClickSignin2() {
