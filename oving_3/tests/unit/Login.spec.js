@@ -1,17 +1,26 @@
-import {mount, shallowMount} from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import LoginComponent from "@/components/LoginComponent.vue";
+import store from "@/store";
+import router from "@/router";
 
 describe("LoginComponent.vue", () => {
   test("Check that Login message renders", () => {
     const loginTitle = "Please login!";
-    const wrapper = mount(LoginComponent);
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     const loginMessage = wrapper.find("[data-testid='loginLabel']");
     expect(loginMessage.text()).toMatch(loginTitle);
   });
 
   test("Check that the rest of the elements render", async () => {
-    const wrapper = mount(LoginComponent);
-
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     expect(wrapper.find("#loginStatusLabel").exists()).toBe(true);
     const statusId = wrapper.find("#loginStatusLabel");
 
@@ -21,19 +30,27 @@ describe("LoginComponent.vue", () => {
   });
 
   test("Modified LoginComponent data renders properly", async () => {
-    const wrapper = shallowMount(LoginComponent);
-
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     const statusId = wrapper.find("#loginStatusLabel");
 
-    await wrapper.setData({ loginstatus: "Success" });
+    await store.dispatch("updateLoginStatus", "Success")
     expect(statusId.element.textContent).toBe("Success");
-    await wrapper.setData({ loginstatus: "Failed" });
+    await store.dispatch("updateLoginStatus", "Failed");
     expect(statusId.element.textContent).toBe("Failed");
+
+    await store.dispatch("updateLoginStatus", "");
   });
 
   test("Check that input is working", async () => {
-    const wrapper = shallowMount(LoginComponent);
-
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     const username = "user";
     const password = "pass";
     const usernameInput = wrapper.find("#usernameInput");
@@ -47,8 +64,11 @@ describe("LoginComponent.vue", () => {
   });
 
   test("Sign in button is clicked and calls handelClickSignin()", async () => {
-    const wrapper = shallowMount(LoginComponent);
-
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     const button = wrapper.find("#signInButton");
     const registerMessage = wrapper.find("#buttonPressed");
 
@@ -58,8 +78,11 @@ describe("LoginComponent.vue", () => {
   });
 
   test("Register option renders when login fails", async () => {
-    const wrapper = shallowMount(LoginComponent);
-
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     const registerContainer = wrapper.find("[data-testid='registerContainer']");
     await wrapper.setData({ loginSuccess: false });
 
@@ -67,8 +90,11 @@ describe("LoginComponent.vue", () => {
   });
 
   test("Register option does not render initially", async () => {
-    const wrapper = shallowMount(LoginComponent);
-
+    const wrapper = mount(LoginComponent, {
+      global: {
+        plugins: [store, router],
+      },
+    });
     const registerContainer = wrapper.find("[data-testid='registerContainer']");
     await wrapper.setData({ loginSuccess: true });
 

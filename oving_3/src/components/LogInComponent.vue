@@ -3,7 +3,7 @@
     <div id="loginTitle">
       <label data-testid="loginLabel">Please login!</label>
     </div>
-    <label id="loginStatusLabel">{{ loginstatus }}</label>
+    <label id="loginStatusLabel">{{ $store.state.loginStatus }}</label>
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <input id="usernameInput" v-model="username" />
