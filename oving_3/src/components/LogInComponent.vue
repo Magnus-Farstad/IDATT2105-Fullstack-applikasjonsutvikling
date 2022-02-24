@@ -1,11 +1,9 @@
 <template>
   <div id="loginContainer">
     <div id="loginTitle">
-      <label>Please login!</label>
+      <label data-testid="loginLabel">Please login!</label>
     </div>
-    <label id="loginStatusLabel" v-if="!loginSuccess"
-      >Login: {{ loginstatus }}</label
-    >
+    <label id="loginStatusLabel">{{ loginstatus }}</label>
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <textarea v-model="username"></textarea>

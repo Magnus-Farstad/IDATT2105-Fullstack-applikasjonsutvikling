@@ -22,7 +22,7 @@
       />
     </form>
     <div class="footer">
-      <div class="helper">{{ $store.state.reviews }}</div>
+<!--      <div class="helper">{{ $store.state.reviews }}</div>-->
       <div class="status">{{ $store.state.status }}</div>
     </div>
   </div>
