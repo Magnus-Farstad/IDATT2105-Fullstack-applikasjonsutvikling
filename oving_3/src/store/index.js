@@ -5,6 +5,7 @@ export default createStore({
     reviews: [],
     status: "",
     flashMessage: "",
+    loginStatus: "",
   },
   mutations: {
     ADD_REVIEW(state, review) {
@@ -16,6 +17,9 @@ export default createStore({
     SET_FLASHMESSAGE(state, message) {
       state.flashMessage = message;
     },
+    SET_LOGINSTATUS(state, status) {
+      state.loginStatus = status;
+    },
   },
   actions: {
     createReview({ commit }, review) {
@@ -26,6 +30,9 @@ export default createStore({
     },
     updateFlashMessage({ commit }, message) {
       commit("SET_FLASHMESSAGE", message);
+    },
+    updateLoginStatus({ commit }, status) {
+      commit("SET_LOGINSTATUS", status);
     },
   },
   modules: {},

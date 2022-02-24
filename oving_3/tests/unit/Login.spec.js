@@ -12,26 +12,66 @@ describe("LoginComponent.vue", () => {
   test("Check that the rest of the elements render", async () => {
     const wrapper = shallowMount(LoginComponent);
 
-    // add some additional checks. For example related to loginStatusLabel element
-    // check that loginstatusLabel component exists
     expect(wrapper.find("#loginStatusLabel").exists()).toBe(true);
     const statusId = wrapper.find("#loginStatusLabel");
-    // check that id of the loginstatusLabel element is correct
+
     expect(statusId.element.id).toBe("loginStatusLabel");
-    // check that the loginstatusLabel element is displaying correct value
+
     expect(statusId.element.textContent).toBe("");
   });
 
   test("Modified LoginComponent data renders properly", async () => {
     const wrapper = shallowMount(LoginComponent);
 
-    // get loginstatusLabel element
     const statusId = wrapper.find("#loginStatusLabel");
-    // change loginStatus data and check that loginstatusLabel element is updated accordingly
 
     await wrapper.setData({ loginstatus: "Success" });
     expect(statusId.element.textContent).toBe("Success");
     await wrapper.setData({ loginstatus: "Failed" });
     expect(statusId.element.textContent).toBe("Failed");
+  });
+
+  test("Check that input is working", async () => {
+    const wrapper = mount(LoginComponent);
+
+    const username = "user";
+    const password = "pass";
+    const usernameInput = wrapper.find("#usernameInput");
+    const passwordInput = wrapper.find("#passwordInput");
+
+    await usernameInput.setValue("user");
+    await passwordInput.setValue("pass");
+
+    expect(usernameInput.element.value).toEqual(username);
+    expect(passwordInput.element.value).toEqual(password);
+  });
+
+  test("Sign in button is clicked and calls handelClickSignin()", async () => {
+    const wrapper = mount(LoginComponent);
+
+    const button = wrapper.find("#signInButton");
+    const registerMessage = wrapper.find("#buttonPressed");
+
+    await button.trigger("click");
+
+    expect(registerMessage.isVisible()).toBe(true);
+  });
+
+  test("Register option renders when login fails", async () => {
+    const wrapper = mount(LoginComponent);
+
+    const registerContainer = wrapper.find("[data-testid='registerContainer']");
+    await wrapper.setData({ loginSuccess: false });
+
+    expect(registerContainer.isVisible()).toBe(true);
+  });
+
+  test("Register option does not render initially", async () => {
+    const wrapper = mount(LoginComponent);
+
+    const registerContainer = wrapper.find("[data-testid='registerContainer']");
+    await wrapper.setData({ loginSuccess: true });
+
+    expect(registerContainer.isVisible()).toBe(false);
   });
 });

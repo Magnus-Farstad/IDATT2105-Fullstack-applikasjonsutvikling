@@ -6,35 +6,37 @@
     <label id="loginStatusLabel">{{ loginstatus }}</label>
     <div id="username">
       <label id="usernameLabel">Username:</label>
-      <textarea v-model="username"></textarea>
+      <input id="usernameInput" v-model="username" />
     </div>
     <div id="password">
       <label id="passwordLabel">Password: </label>
-      <textarea v-model="password"></textarea>
-      <button @click="handleClickSignin">Sign in</button>
+      <input id="passwordInput" v-model="password" />
+      <button id="signInButton" @click="handleClickSignin">Sign in</button>
     </div>
-    <div class="registerContainer" v-if="!loginSuccess">
+    <div
+      data-testid="registerContainer"
+      class="registerContainer"
+      v-show="!loginSuccess"
+    >
       <div class="notRegistered">Not yet registered?</div>
       <router-link :to="{ name: 'Register' }">Register</router-link>
     </div>
   </div>
+  <div id="buttonPressed" v-show="buttonPressed"></div>
 </template>
 
 <script>
-import axios from "axios";
+import { doLogin } from "@/utils/apiutils";
 
 export default {
   name: "LoginComponent",
   methods: {
     async handleClickSignin() {
-      //alert("You entered the username: " + this.username);
       const loginRequest = { username: this.username, password: this.password };
-      const loginResponse = await axios.post(
-        "http://localhost:8085/demo/login",
-        loginRequest
-      );
-      console.log("Login " + loginResponse.data.loginStatus);
-      this.loginstatus = loginResponse.data.loginStatus;
+      this.handleClickSignin2();
+      const loginResponse = await doLogin(loginRequest);
+      console.log("Login " + loginResponse.loginStatus);
+      this.loginstatus = loginResponse.loginStatus;
 
       if (this.loginstatus === "Success") {
         this.loginSuccess = true;
@@ -52,6 +54,9 @@ export default {
         console.log("Inside else bracket");
       }
     },
+    handleClickSignin2() {
+      this.buttonPressed = true;
+    },
   },
   data() {
     return {
@@ -59,6 +64,7 @@ export default {
       password: "",
       loginstatus: "",
       loginSuccess: true,
+      buttonPressed: false,
     };
   },
 };
@@ -86,6 +92,10 @@ export default {
   flex-direction: row;
   align-items: center;
   column-gap: 20px;
+}
+
+input {
+  min-height: 2rem;
 }
 
 #usernameLabel,
