@@ -3,7 +3,7 @@
     <div id="loginTitle">
       <label data-testid="loginLabel">Please login!</label>
     </div>
-    <label id="loginStatusLabel">{{ $store.state.loginStatus }}</label>
+    <label id="loginStatusLabel">{{ loginstatus }}</label>
     <div id="username">
       <label id="usernameLabel">Username:</label>
       <input id="usernameInput" v-model="username" />
@@ -40,7 +40,7 @@ export default {
 
       this.$store.dispatch("updateLoginStatus", loginResponse.loginStatus);
 
-      this.loginstatus = this.$store.getters.getLoginStatus;
+      this.loginstatus = this.$store.state.loginStatus;
 
       if (this.loginstatus === "Success") {
         this.loginSuccess = true;

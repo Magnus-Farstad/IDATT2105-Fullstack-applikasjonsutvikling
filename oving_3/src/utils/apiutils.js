@@ -7,3 +7,11 @@ export function doLogin(loginRequest) {
       return response.data;
     });
 }
+
+export function doRegistration(registrationRequest) {
+  return axios
+    .post("http://localhost:3000/", registrationRequest)
+    .then((response) => {
+      return response.data;
+    });
+}

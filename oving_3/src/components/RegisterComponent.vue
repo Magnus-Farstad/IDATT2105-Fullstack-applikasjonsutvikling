@@ -1,13 +1,14 @@
 <template>
-  <h2>Register!</h2>
+  <h2 class="registerMessage">Register!</h2>
   <div class="registerContainer">
-    <BaseInput v-model="name" label="Full name" type="text"></BaseInput>
+    <BaseInput id="name" v-model="name" label="Full name" type="text"></BaseInput>
     <BaseInput v-model="address" label="Address" type="text"></BaseInput>
     <BaseInput v-model="username" label="Username" type="text"></BaseInput>
     <BaseInput v-model="password" label="Password" type="text"></BaseInput>
     <BaseInput v-model="email" label="Email" type="text"></BaseInput>
     <BaseInput v-model="phone" label="Phone" type="number"></BaseInput>
     <button
+        id="registerbutton"
       :disabled="isDisabled"
       :class="{ disabledButton: isDisabled }"
       class="registerButton"
@@ -41,6 +42,8 @@ export default {
       setTimeout(() => {
         this.$store.dispatch("updateFlashMessage", "");
       }, 3000);
+
+      this.$store.dispatch("updateLoginStatus", "");
 
       this.$router.push({
         name: "Home",
