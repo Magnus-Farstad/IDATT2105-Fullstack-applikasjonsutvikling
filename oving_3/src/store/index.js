@@ -39,7 +39,7 @@ export default createStore({
   getters: {
     getLoginStatus(state) {
       return state.loginStatus;
-    }
+    },
   },
   modules: {},
 });
