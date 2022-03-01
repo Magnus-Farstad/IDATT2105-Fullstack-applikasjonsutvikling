@@ -5,10 +5,15 @@ import magnus.ntnu.no.oving4.service.CalculatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @org.springframework.web.bind.annotation.RestController
+@RequestMapping("/calculator")
+@EnableAutoConfiguration
+@CrossOrigin
 public class RestController {
 
     @Autowired
@@ -16,7 +21,8 @@ public class RestController {
 
     Logger logger = LoggerFactory.getLogger(RestController.class);
 
-    @PostMapping("/calculator")
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public Calculation calculate(@RequestBody Calculation calculation) {
         logger.trace("PostMapping('/calculator') calculate() was called");
         switch (calculation.getOperation()) {
@@ -35,6 +41,10 @@ public class RestController {
             case "/":
                 service.divide(calculation);
                 break;
+
+            default:
+                logger.warn("From calculate(): Operation was not valid");
+                calculation.setOperation("");
         }
         return calculation;
     }
