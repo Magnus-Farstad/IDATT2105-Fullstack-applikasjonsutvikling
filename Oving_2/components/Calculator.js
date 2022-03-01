@@ -106,6 +106,14 @@ app.component('calculator', {
                 this.equation.indexOf("/") !== -1)
             {
                 this.equation += this.current;
+                let equationSplit = this.equation.split("")
+                let equationObject = {
+                    first: equationSplit[0],
+                    operation: equationSplit[1],
+                    second: equationSplit[2],
+                }
+                console.log(equationObject)
+                console.log(this.equation)
                 this.equation += "=";
 
                 this.current = String(this.operator(Number(this.previous), Number(this.current)));
