@@ -18,6 +18,7 @@ public class RestController {
 
     @PostMapping("/calculator")
     public Calculation calculate(@RequestBody Calculation calculation) {
+        logger.trace("PostMapping('/calculator') calculate() was called");
         switch (calculation.getOperation()) {
             case "+":
                 service.add(calculation);
