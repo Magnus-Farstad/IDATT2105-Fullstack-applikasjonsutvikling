@@ -11,37 +11,37 @@ public class CalculatorService {
     private String name;
 
     public Calculation add(Calculation calculation) {
-        int first = Integer.parseInt(calculation.getFirst());
-        int second = Integer.parseInt(calculation.getSecond());
+        int first = calculation.getFirst();
+        int second = calculation.getSecond();
 
-        calculation.setAnswer(String.valueOf(first + second));
+        calculation.setAnswer(first + second);
 
         return calculation;
     }
 
     public Calculation subtract(Calculation calculation) {
-        int first = Integer.parseInt(calculation.getFirst());
-        int second = Integer.parseInt(calculation.getSecond());
+        int first = calculation.getFirst();
+        int second = calculation.getSecond();
 
-        calculation.setAnswer(String.valueOf(first - second));
+        calculation.setAnswer(first - second);
 
         return calculation;
     }
 
     public Calculation multiply(Calculation calculation) {
-        int first = Integer.parseInt(calculation.getFirst());
-        int second = Integer.parseInt(calculation.getSecond());
+        int first = calculation.getFirst();
+        int second = calculation.getSecond();
 
-        calculation.setAnswer(String.valueOf(first * second));
+        calculation.setAnswer(first * second);
 
         return calculation;
     }
 
     public Calculation divide(Calculation calculation) {
-        int first = Integer.parseInt(calculation.getFirst());
-        int second = Integer.parseInt(calculation.getSecond());
+        int first = calculation.getFirst();
+        int second = calculation.getSecond();
 
-        calculation.setAnswer(String.valueOf(first / second));
+        calculation.setAnswer(first / second);
 
         return calculation;
     }
