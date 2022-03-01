@@ -7,7 +7,16 @@ public class Calculation {
     private String first;
     private String operation;
     private String second;
+    private String answer;
     private List<String> calculations = new ArrayList<String>();
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 
     public List<String> getCalculations() {
         return calculations;
