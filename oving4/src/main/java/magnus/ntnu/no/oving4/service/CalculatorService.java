@@ -1,7 +1,6 @@
 package magnus.ntnu.no.oving4.service;
 
 import magnus.ntnu.no.oving4.model.Calculation;
-import magnus.ntnu.no.oving4.web.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,8 +17,8 @@ public class CalculatorService {
     public Calculation add(Calculation calculation) {
         logger.info("add() was called");
 
-        int first = calculation.getFirst();
-        int second = calculation.getSecond();
+        double first = calculation.getFirst();
+        double second = calculation.getSecond();
 
         calculation.setAnswer(first + second);
 
@@ -29,8 +28,8 @@ public class CalculatorService {
     public Calculation subtract(Calculation calculation) {
         logger.info("subtract() was called");
 
-        int first = calculation.getFirst();
-        int second = calculation.getSecond();
+        double first = calculation.getFirst();
+        double second = calculation.getSecond();
 
         calculation.setAnswer(first - second);
 
@@ -40,8 +39,8 @@ public class CalculatorService {
     public Calculation multiply(Calculation calculation) {
         logger.info("multiply() was called");
 
-        int first = calculation.getFirst();
-        int second = calculation.getSecond();
+        double first = calculation.getFirst();
+        double second = calculation.getSecond();
 
         calculation.setAnswer(first * second);
 
@@ -51,8 +50,8 @@ public class CalculatorService {
     public Calculation divide(Calculation calculation) {
         logger.info("divide() was called");
 
-        int first = calculation.getFirst();
-        int second = calculation.getSecond();
+        double first = calculation.getFirst();
+        double second = calculation.getSecond();
 
         calculation.setAnswer(first / second);
 

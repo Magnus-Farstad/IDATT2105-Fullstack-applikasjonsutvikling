@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculation {
-    private int first;
+    private double first;
     private String operation;
-    private int second;
-    private int answer;
+    private double second;
+    private double answer;
     private List<String> calculations = new ArrayList<String>();
 
-    public int getAnswer() {
+    public double getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int answer) {
+    public void setAnswer(double answer) {
         this.answer = answer;
     }
 
@@ -26,11 +26,11 @@ public class Calculation {
         this.calculations = calculations;
     }
 
-    public int getFirst() {
+    public double getFirst() {
         return first;
     }
 
-    public void setFirst(int first) {
+    public void setFirst(double first) {
         this.first = first;
     }
 
@@ -42,11 +42,11 @@ public class Calculation {
         this.operation = operation;
     }
 
-    public int getSecond() {
+    public double getSecond() {
         return second;
     }
 
-    public void setSecond(int second) {
+    public void setSecond(double second) {
         this.second = second;
     }
 }
