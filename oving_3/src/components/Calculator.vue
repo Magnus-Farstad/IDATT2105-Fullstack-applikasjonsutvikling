@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { doCalculation } from "@/utils/apiutils";
+
 export default {
   name: "Calculator",
   data() {
@@ -82,26 +84,26 @@ export default {
     },
 
     add() {
-      this.operator = (x, y) => x + y;
+      this.operator = "+";
       this.savePrevious();
       this.addToLog("+");
     },
     subtract() {
-      this.operator = (x, y) => x - y;
+      this.operator = "-";
       this.savePrevious();
       this.addToLog("-");
     },
     multiply() {
-      this.operator = (x, y) => x * y;
+      this.operator = "*";
       this.savePrevious();
       this.addToLog("*");
     },
     divide() {
-      this.operator = (x, y) => x / y;
+      this.operator = "/";
       this.savePrevious();
       this.addToLog("/");
     },
-    equal() {
+    async equal() {
       if (
         this.equation.indexOf("+") !== -1 ||
         this.equation.indexOf("-") !== -1 ||
@@ -109,12 +111,24 @@ export default {
         this.equation.indexOf("/") !== -1
       ) {
         this.equation += this.current;
+        //let equationSplit = this.equation.split("");
+        const equationObject = {
+          first: this.previous,
+          operation: this.operator,
+          second: this.current,
+        };
+        console.log(equationObject);
+
+        let calculationResponse = await doCalculation(equationObject);
+        console.log("Calculation response: " + calculationResponse.answer);
+
         this.equation += "=";
 
-        this.current = String(
-          this.operator(Number(this.previous), Number(this.current))
-        );
-        this.answer = this.current;
+        // this.current = String(
+        //   this.operator(Number(this.previous), Number(this.current))
+        // );
+
+        this.answer = calculationResponse.answer;
         this.equation += this.answer;
         this.previous = null;
         //console.log(this.equation);

@@ -15,3 +15,11 @@ export function doRegistration(registrationRequest) {
       return response.data;
     });
 }
+
+export function doCalculation(calculation) {
+  return axios
+    .post("http://localhost:8080/calculator", calculation)
+    .then((response) => {
+      return response.data;
+    });
+}
