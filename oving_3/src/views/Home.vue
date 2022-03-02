@@ -62,6 +62,7 @@ body {
   font-size: 40px;
   grid-auto-rows: minmax(50px, auto);
   box-shadow: 0 0 16px #363535;
+  border-radius: 10px;
 }
 
 .headerContainer {

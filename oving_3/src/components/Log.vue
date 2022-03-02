@@ -27,6 +27,7 @@ export default {
   margin-top: 10px;
   height: 400px;
   background-color: rgba(255, 165, 0, 0.14);
+  border-radius: 5px;
 }
 
 .log {
