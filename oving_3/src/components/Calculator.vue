@@ -70,6 +70,7 @@ export default {
       this.equation = this.previous;
     },
     addToLog(operation) {
+      console.log(typeof this.equation)
       if (this.equation.indexOf("=") === -1 && this.equation !== "") {
         this.equation += operation;
       }
@@ -129,7 +130,7 @@ export default {
         //   this.operator(Number(this.previous), Number(this.current))
         // );
 
-        this.answer = calculationResponse.answer;
+        this.answer = String(calculationResponse.answer);
         this.current = this.answer;
         this.equation += this.answer;
         this.previous = null;
