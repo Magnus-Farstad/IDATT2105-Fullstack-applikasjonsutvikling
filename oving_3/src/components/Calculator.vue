@@ -75,7 +75,9 @@ export default {
       }
     },
     showAnswer() {
-      this.current = this.answer;
+      this.clear();
+      this.append(this.answer);
+      //this.current = this.answer;
     },
     deleteOne() {
       this.current = this.current.substring(0, this.current.length - 1);
@@ -111,7 +113,6 @@ export default {
         this.equation.indexOf("/") !== -1
       ) {
         this.equation += this.current;
-        //let equationSplit = this.equation.split("");
         const equationObject = {
           first: this.previous,
           operation: this.operator,
@@ -129,8 +130,10 @@ export default {
         // );
 
         this.answer = calculationResponse.answer;
+        this.current = this.answer;
         this.equation += this.answer;
         this.previous = null;
+        this.operatorClicked = false;
         //console.log(this.equation);
         this.addEquations();
       }

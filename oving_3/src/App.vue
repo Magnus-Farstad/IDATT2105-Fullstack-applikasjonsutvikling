@@ -1,5 +1,7 @@
 <template>
-  <div id="flashMessage" v-if="$store.state.flashMessage">{{ $store.state.flashMessage }}</div>
+  <div id="flashMessage" v-if="$store.state.flashMessage">
+    {{ $store.state.flashMessage }}
+  </div>
   <div id="nav">
     <router-link :to="{ name: 'Home' }">Home</router-link> |
     <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |

@@ -1,4 +1,4 @@
-import {doLogin, doRegistration} from "@/utils/apiutils";
+import { doLogin, doRegistration } from "@/utils/apiutils";
 import axios from "axios";
 
 jest.mock("axios");

@@ -37,7 +37,7 @@ describe("LoginComponent.vue", () => {
     });
     const statusId = wrapper.find("#loginStatusLabel");
 
-    await store.dispatch("updateLoginStatus", "Success")
+    await store.dispatch("updateLoginStatus", "Success");
     expect(statusId.element.textContent).toBe("Success");
     await store.dispatch("updateLoginStatus", "Failed");
     expect(statusId.element.textContent).toBe("Failed");
