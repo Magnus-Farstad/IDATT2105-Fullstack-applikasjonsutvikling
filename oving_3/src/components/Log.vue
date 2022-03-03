@@ -22,10 +22,10 @@ export default {
 
 <style scoped>
 #scrollBox {
-  overflow: scroll;
+  overflow: auto;
   border: solid black;
   margin-top: 10px;
-  height: 400px;
+  height: 250px;
   background-color: rgba(255, 165, 0, 0.14);
   border-radius: 5px;
 }

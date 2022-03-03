@@ -55,24 +55,26 @@ body {
     "log log log log";
   background-color: #eee;
   padding: 7px;
-  height: 100%;
+  height: 70%;
   margin: 0 auto;
   text-align: center;
-  width: 40%;
-  font-size: 40px;
+  width: 30%;
+  font-size: 35px;
   grid-auto-rows: minmax(50px, auto);
   box-shadow: 0 0 16px #363535;
   border-radius: 10px;
+  align-items: center;
 }
 
 .headerContainer {
-  margin: 40px auto;
+  margin: 20px auto;
   text-align: center;
 }
 
 .header {
   font-size: 50px;
   font-weight: 900;
+  margin: 15px;
 }
 
 .text {
