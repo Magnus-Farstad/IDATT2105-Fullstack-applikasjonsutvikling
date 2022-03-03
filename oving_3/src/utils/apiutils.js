@@ -18,7 +18,7 @@ export function doRegistration(registrationRequest) {
 
 export function doCalculation(calculation) {
   return axios
-    .post("http://localhost:8080/calculator", calculation)
+    .post("http://localhost:8085/calculator", calculation)
     .then((response) => {
       return response.data;
     });
