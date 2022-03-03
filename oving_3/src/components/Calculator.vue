@@ -70,7 +70,7 @@ export default {
       this.equation = this.previous;
     },
     addToLog(operation) {
-      console.log(typeof this.equation)
+      console.log(typeof this.equation);
       if (this.equation.indexOf("=") === -1 && this.equation !== "") {
         this.equation += operation;
       }

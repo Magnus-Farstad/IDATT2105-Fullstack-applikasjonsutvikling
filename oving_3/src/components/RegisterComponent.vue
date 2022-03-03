@@ -11,7 +11,7 @@
     <BaseInput v-model="username" label="Username" type="text"></BaseInput>
     <BaseInput v-model="password" label="Password" type="text"></BaseInput>
     <BaseInput v-model="email" label="Email" type="text"></BaseInput>
-    <BaseInput v-model="phone" label="Phone" type="number"></BaseInput>
+    <BaseInput v-model="phone" label="Phone" type="Number"></BaseInput>
     <button
       id="registerbutton"
       :disabled="isDisabled"
@@ -39,20 +39,50 @@ export default {
       password: "",
       email: "",
       phone: "",
+      validRegistration: false,
     };
   },
   methods: {
     handleRegister() {
-      this.$store.dispatch("updateFlashMessage", "Register was Successful!");
-      setTimeout(() => {
-        this.$store.dispatch("updateFlashMessage", "");
-      }, 3000);
+      this.isValid();
+      console.log(
+        "validRegistration is: " +
+          this.validRegistration +
+          " of type: " +
+          typeof this.validRegistration
+      );
+      if (this.validRegistration === true) {
+        this.$store.dispatch("updateFlashMessage", "Register was Successful!");
+        setTimeout(() => {
+          this.$store.dispatch("updateFlashMessage", "");
+        }, 3000);
 
-      this.$store.dispatch("updateLoginStatus", "");
+        this.$store.dispatch("updateLoginStatus", "");
 
-      this.$router.push({
-        name: "Home",
-      });
+        this.$router.push({
+          name: "Home",
+        });
+      } else {
+        alert(this.validRegistration);
+      }
+    },
+    isValid() {
+      let matches = this.name.match(/\d+/g);
+      if (matches === null) {
+        this.validEmail();
+      } else {
+        this.validRegistration = "Name cannot contain numbers";
+      }
+    },
+    validEmail() {
+      const regex =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!regex.test(String(this.email).toLowerCase())) {
+        this.validRegistration = "Please enter a valid email address";
+        console.log(this.validRegistration);
+      } else {
+        this.validRegistration = true;
+      }
     },
   },
   computed: {
