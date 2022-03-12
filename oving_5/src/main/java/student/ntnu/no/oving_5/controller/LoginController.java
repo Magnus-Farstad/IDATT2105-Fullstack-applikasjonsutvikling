@@ -31,7 +31,6 @@ public class LoginController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse doLogin(final @RequestBody LoginRequest loginRequest){
         LOGGER.info("Logging in..." + loginRequest.getUsername());
-
         return loginService.doLogin(loginRequest);
     }
 

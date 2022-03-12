@@ -1,16 +1,16 @@
 package student.ntnu.no.oving_5.model.login;
 
 public class User {
-    private int id;
+    private int user_id;
     private String username;
     private String passw;
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
