@@ -10,6 +10,17 @@ public class Calculation {
     private double answer;
     private List<String> calculations = new ArrayList<String>();
 
+    public Calculation() {
+
+    }
+
+    public Calculation(double first, String operation, double second, double answer) {
+        this.first = first;
+        this.operation = operation;
+        this.second = second;
+        this.answer = answer;
+    }
+
     public double getAnswer() {
         return answer;
     }

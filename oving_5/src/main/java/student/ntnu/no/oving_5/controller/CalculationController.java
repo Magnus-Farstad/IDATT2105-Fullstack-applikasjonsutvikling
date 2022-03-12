@@ -1,5 +1,6 @@
 package student.ntnu.no.oving_5.controller;
 
+import org.springframework.http.ResponseEntity;
 import student.ntnu.no.oving_5.model.Calculation;
 import student.ntnu.no.oving_5.service.CalculatorService;
 import org.slf4j.Logger;
@@ -21,10 +22,12 @@ public class CalculationController {
 
     Logger logger = LoggerFactory.getLogger(RestController.class);
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Calculation calculate(@RequestBody Calculation calculation) {
+    public Calculation calculate(@RequestBody Calculation calculation, @PathVariable("id") int id) {
         logger.trace("PostMapping('/calculator') calculate() was called");
+        String calc = calculation.getFirst() + calculation.getOperation() + calculation.getSecond() + "=" + calculation.getAnswer();
+        logger.info(calc);
         switch (calculation.getOperation()) {
             case "+":
                 service.add(calculation);
@@ -46,6 +49,17 @@ public class CalculationController {
                 logger.warn("From calculate(): Operation was not valid");
                 calculation.setOperation("");
         }
+        saveCalculation(calculation, id);
         return calculation;
+    }
+
+    private ResponseEntity<String> saveCalculation(Calculation calculation, int id) {
+        logger.trace("CalculationController");
+        try {
+            service.saveCalculation(id, new Calculation(calculation.getFirst(), calculation.getOperation(), calculation.getSecond(), calculation.getAnswer()));
+            return  new ResponseEntity<>("Calculation was successfully saved", HttpStatus.CREATED);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
