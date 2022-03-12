@@ -9,8 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LoginResponse {
 
     final private String loginStatus;
+    private int id;
 
-    public LoginResponse(@JsonProperty("loginStatus")  String loginStatus) {
+    public LoginResponse(@JsonProperty("loginStatus")  String loginStatus, int id) {
+        this.loginStatus = loginStatus;
+        this.id = id;
+    }
+
+    public LoginResponse(@JsonProperty("loginStatus") String loginStatus) {
         this.loginStatus = loginStatus;
     }
 
