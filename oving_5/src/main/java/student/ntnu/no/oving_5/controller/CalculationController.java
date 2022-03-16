@@ -20,11 +20,11 @@ public class CalculationController {
     @Autowired
     private CalculatorService service;
 
-    Logger logger = LoggerFactory.getLogger(RestController.class);
+    Logger logger = LoggerFactory.getLogger(CalculationController.class);
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Calculation calculate(@RequestBody Calculation calculation, @PathVariable("id") int id) {
+    public Calculation calculate(@RequestBody Calculation calculation, int id) {
         logger.trace("PostMapping('/calculator') calculate() was called");
         String calc = calculation.getFirst() + calculation.getOperation() + calculation.getSecond() + "=" + calculation.getAnswer();
         logger.info(calc);

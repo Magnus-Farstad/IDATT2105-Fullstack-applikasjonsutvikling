@@ -25,12 +25,12 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
+    //private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse doLogin(final @RequestBody LoginRequest loginRequest){
-        LOGGER.info("Logging in..." + loginRequest.getUsername());
+        //LOGGER.info("Logging in..." + loginRequest.getUsername());
         return loginService.doLogin(loginRequest);
     }
 
