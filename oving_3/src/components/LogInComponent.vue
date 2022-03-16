@@ -36,6 +36,7 @@ export default {
       this.handleClickSignin2();
       const loginResponse = await doLogin(loginRequest);
       console.log("Login " + loginResponse.loginStatus);
+      console.log("Login id: " + loginResponse.user_id);
       //this.loginstatus = loginResponse.loginStatus;
 
       this.$store.dispatch("updateLoginStatus", loginResponse.loginStatus);
@@ -45,6 +46,7 @@ export default {
       if (this.loginstatus === "Success") {
         this.loginSuccess = true;
 
+        this.$store.dispatch("updateCurrentUser", loginResponse);
         this.$store.dispatch("updateFlashMessage", "Login was Successful!");
         setTimeout(() => {
           this.$store.dispatch("updateFlashMessage", "");

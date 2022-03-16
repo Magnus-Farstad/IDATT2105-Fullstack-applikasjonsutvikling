@@ -121,7 +121,8 @@ export default {
         };
         console.log(equationObject);
 
-        let calculationResponse = await doCalculation(equationObject);
+        let currentUserId = this.$store.state.currentUser.userId;
+        let calculationResponse = await doCalculation(equationObject, currentUserId);
         console.log("Calculation response: " + calculationResponse.answer);
 
         this.equation += "=";

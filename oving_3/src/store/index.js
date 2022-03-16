@@ -6,6 +6,9 @@ export default createStore({
     status: "",
     flashMessage: "",
     loginStatus: "",
+    currentUser: {
+      userId: null,
+    },
   },
   mutations: {
     ADD_REVIEW(state, review) {
@@ -21,6 +24,9 @@ export default createStore({
       state.loginStatus = loginstatus;
       console.log("From inside store " + state.loginStatus);
     },
+    SET_CURRENT_USER(state, loginresponse) {
+      state.currentUser.userId = loginresponse.user_id;
+    },
   },
   actions: {
     createReview({ commit }, review) {
@@ -34,6 +40,9 @@ export default createStore({
     },
     updateLoginStatus({ commit }, loginstatus) {
       commit("SET_LOGINSTATUS", loginstatus);
+    },
+    updateCurrentUser({ commit }, loginresponse) {
+      commit("SET_CURRENT_USER", loginresponse);
     },
   },
   getters: {
