@@ -22,6 +22,7 @@ public class JdbcRegisterRepository {
                     registerRequest.getUsername(), registerRequest.getPassword(),
                     registerRequest.getEmail(), registerRequest.getPhone());
         } else {
+            System.out.println("Register failed");
             return new RegisterResponse("Register failed");
         }
     }

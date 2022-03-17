@@ -25,6 +25,7 @@ public class RegisterResponse {
                             @JsonProperty("password") String password,
                             @JsonProperty("email") String email,
                             @JsonProperty("phone") int phone) {
+        this.registerStatus = registerStatus;
         this.name = name;
         this.address = address;
         this.username = username;
@@ -36,5 +37,33 @@ public class RegisterResponse {
     @JsonCreator()
     public RegisterResponse(@JsonProperty("registerStatus") String registerStatus) {
         this.registerStatus = registerStatus;
+    }
+
+    public String getRegisterStatus() {
+        return registerStatus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getPhone() {
+        return phone;
     }
 }

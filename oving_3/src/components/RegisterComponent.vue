@@ -64,9 +64,13 @@ export default {
         };
 
         let registerResponse = await doRegistration(user);
+        console.log(registerResponse.registerStatus);
 
-        if (registerResponse.registrationStatus === "Register was Successful!") {
-          this.$store.dispatch("updateFlashMessage", "Register was Successful!");
+        if (registerResponse.registerStatus === "Register was Successful!") {
+          this.$store.dispatch(
+            "updateFlashMessage",
+            "Register was Successful!"
+          );
           setTimeout(() => {
             this.$store.dispatch("updateFlashMessage", "");
           }, 3000);

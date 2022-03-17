@@ -21,6 +21,8 @@ public class RegisterController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public RegisterResponse doRegistration(@RequestBody RegisterRequest registerRequest) {
-        return registerService.registerUser(registerRequest);
+        RegisterResponse response = registerService.registerUser(registerRequest);
+        System.out.println(response.getRegisterStatus());
+        return response;
     }
 }
