@@ -6,8 +6,10 @@ export default createStore({
     status: "",
     flashMessage: "",
     loginStatus: "",
+    userLoggedIn: false,
     currentUser: {
       userId: null,
+      userName: null,
     },
   },
   mutations: {
@@ -26,6 +28,8 @@ export default createStore({
     },
     SET_CURRENT_USER(state, loginresponse) {
       state.currentUser.userId = loginresponse.user_id;
+      state.currentUser.userName = loginresponse.username;
+      state.userLoggedIn = true;
     },
   },
   actions: {

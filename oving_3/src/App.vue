@@ -3,12 +3,14 @@
     {{ $store.state.flashMessage }}
   </div>
   <div id="nav">
-    <div class="currentUser">{{ $store.state.currentUser.userId }}</div>
+    <div class="currentUser">{{ $store.state.currentUser.userName }}</div>
     <div>
       <router-link :to="{ name: 'Home' }">Home</router-link> |
       <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
       <router-link :to="{ name: 'About' }">About</router-link> |
-      <router-link :to="{ name: 'LogIn' }">Log in</router-link>
+      <router-link :to="{ name: 'LogIn' }" v-show="!$store.state.userLoggedIn"
+        >Log in
+      </router-link>
     </div>
   </div>
   <router-view />
