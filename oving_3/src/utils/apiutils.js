@@ -10,7 +10,7 @@ export function doLogin(loginRequest) {
 
 export function doRegistration(registrationRequest) {
   return axios
-    .post("http://localhost:3000/", registrationRequest)
+    .post("http://localhost:8085/register", registrationRequest)
     .then((response) => {
       return response.data;
     });

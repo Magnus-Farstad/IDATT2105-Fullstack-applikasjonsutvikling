@@ -26,6 +26,8 @@
 
 <script>
 import BaseInput from "@/components/BaseInput";
+import { doRegistration } from "@/utils/apiutils";
+
 export default {
   name: "RegisterComponent",
   components: {
@@ -43,7 +45,7 @@ export default {
     };
   },
   methods: {
-    handleRegister() {
+    async handleRegister() {
       this.isValid();
       console.log(
         "validRegistration is: " +
@@ -52,16 +54,29 @@ export default {
           typeof this.validRegistration
       );
       if (this.validRegistration === true) {
-        this.$store.dispatch("updateFlashMessage", "Register was Successful!");
-        setTimeout(() => {
-          this.$store.dispatch("updateFlashMessage", "");
-        }, 3000);
+        let user = {
+          name: this.name,
+          address: this.address,
+          username: this.username,
+          password: this.password,
+          email: this.email,
+          phone: this.phone,
+        };
 
-        this.$store.dispatch("updateLoginStatus", "");
+        let registerResponse = await doRegistration(user);
 
-        this.$router.push({
-          name: "Home",
-        });
+        if (registerResponse.registrationStatus === "Register was Successful!") {
+          this.$store.dispatch("updateFlashMessage", "Register was Successful!");
+          setTimeout(() => {
+            this.$store.dispatch("updateFlashMessage", "");
+          }, 3000);
+
+          this.$store.dispatch("updateLoginStatus", "");
+
+          this.$router.push({
+            name: "Home",
+          });
+        }
       } else {
         alert(this.validRegistration);
       }
