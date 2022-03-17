@@ -11,11 +11,13 @@ public class LoginResponse {
     final private String loginStatus;
     private int user_id;
     private String username;
+    private String name;
 
-    public LoginResponse(@JsonProperty("loginStatus")  String loginStatus, int user_id, String username) {
+    public LoginResponse(@JsonProperty("loginStatus")  String loginStatus, int user_id, String username, String name) {
         this.loginStatus = loginStatus;
         this.user_id = user_id;
         this.username = username;
+        this.name = name;
     }
 
     public LoginResponse(@JsonProperty("loginStatus") String loginStatus) {
@@ -35,5 +37,10 @@ public class LoginResponse {
     @JsonProperty("user_id")
     public int getUser_id() {
         return this.user_id;
+    }
+
+    @JsonProperty("name")
+    public String getName() {
+        return this.name;
     }
 }

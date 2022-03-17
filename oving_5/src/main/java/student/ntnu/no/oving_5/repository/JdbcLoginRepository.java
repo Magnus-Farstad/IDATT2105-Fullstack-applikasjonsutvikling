@@ -24,8 +24,8 @@ public class JdbcLoginRepository implements LoginRepository{
             User user = jdbcTemplate.queryForObject("SELECT * FROM user WHERE username=? AND passw=?",
                     BeanPropertyRowMapper.newInstance(User.class), loginRequest.getUsername(), loginRequest.getPassword());
 
-            logger.info(user.getUsername() + " is successfully logged in!");
-            return new LoginResponse("Success", user.getUser_id(), user.getUsername());
+            logger.info(user.getName() + " is successfully logged in!");
+            return new LoginResponse("Success", user.getUser_id(), user.getUsername(), user.getName());
         } catch (Exception exception) {
             logger.info(loginRequest.getUsername() + " failed to log in");
             return new LoginResponse("Fail");

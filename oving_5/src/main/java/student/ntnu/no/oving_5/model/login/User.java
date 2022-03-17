@@ -1,9 +1,12 @@
 package student.ntnu.no.oving_5.model.login;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     private int user_id;
     private String username;
     private String passw;
+    private String name;
 
     public int getUser_id() {
         return user_id;
@@ -27,5 +30,13 @@ public class User {
 
     public void setPassw(String passw) {
         this.passw = passw;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

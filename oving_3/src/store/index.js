@@ -10,6 +10,7 @@ export default createStore({
     currentUser: {
       userId: null,
       userName: null,
+      name: null,
     },
   },
   mutations: {
@@ -29,6 +30,7 @@ export default createStore({
     SET_CURRENT_USER(state, loginresponse) {
       state.currentUser.userId = loginresponse.user_id;
       state.currentUser.userName = loginresponse.username;
+      state.currentUser.name = loginresponse.name;
       state.userLoggedIn = true;
     },
   },

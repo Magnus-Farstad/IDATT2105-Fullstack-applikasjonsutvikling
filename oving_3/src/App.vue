@@ -3,7 +3,7 @@
     {{ $store.state.flashMessage }}
   </div>
   <div id="nav">
-    <div class="currentUser">{{ $store.state.currentUser.userName }}</div>
+    <div class="currentUser">{{ $store.state.currentUser.name }}</div>
     <div>
       <router-link :to="{ name: 'Home' }">Home</router-link> |
       <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
