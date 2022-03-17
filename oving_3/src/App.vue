@@ -8,13 +8,24 @@
       <router-link :to="{ name: 'Home' }">Home</router-link> |
       <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
       <router-link :to="{ name: 'About' }">About</router-link> |
-      <router-link :to="{ name: 'LogIn' }" v-show="!$store.state.userLoggedIn"
+      <router-link :to="{ name: 'LogIn' }" v-if="!$store.state.userLoggedIn"
         >Log in
       </router-link>
+      <button v-else @click="logOut">Log out</button>
     </div>
   </div>
   <router-view />
 </template>
+
+<script>
+export default {
+  methods: {
+    logOut() {
+      this.$store.dispatch("logOutUser");
+    }
+  }
+}
+</script>
 
 <style>
 @keyframes yellowfade {

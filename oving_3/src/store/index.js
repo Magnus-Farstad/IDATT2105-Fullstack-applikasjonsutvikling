@@ -33,6 +33,13 @@ export default createStore({
       state.currentUser.name = loginresponse.name;
       state.userLoggedIn = true;
     },
+    REMOVE_USER(state) {
+      state.currentUser.userId = null;
+      state.currentUser.userName = null;
+      state.currentUser.name = null;
+      state.userLoggedIn = false;
+      state.loginStatus = "";
+    },
   },
   actions: {
     createReview({ commit }, review) {
@@ -49,6 +56,9 @@ export default createStore({
     },
     updateCurrentUser({ commit }, loginresponse) {
       commit("SET_CURRENT_USER", loginresponse);
+    },
+    logOutUser({ commit }) {
+      commit("REMOVE_USER");
     },
   },
   getters: {
