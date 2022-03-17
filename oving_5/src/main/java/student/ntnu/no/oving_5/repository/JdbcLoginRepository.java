@@ -25,7 +25,7 @@ public class JdbcLoginRepository implements LoginRepository{
                     BeanPropertyRowMapper.newInstance(User.class), loginRequest.getUsername(), loginRequest.getPassword());
 
             logger.info(user.getUsername() + " is successfully logged in!");
-            return new LoginResponse("Success", user.getUser_id());
+            return new LoginResponse("Success", user.getUser_id(), user.getUsername());
         } catch (Exception exception) {
             logger.info(loginRequest.getUsername() + " failed to log in");
             return new LoginResponse("Fail");
