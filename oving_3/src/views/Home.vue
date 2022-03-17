@@ -3,7 +3,7 @@
     <div class="headerContainer">
       <h1 class="header">Calculator</h1>
     </div>
-    <div id="calculatorContainer">
+    <div id="calculatorContainer" v-show="isUserLoggedIn">
       <calculator @add-equations="addEquation"></calculator>
       <log :equations="equations"></log>
     </div>
@@ -34,6 +34,11 @@ export default {
       // for (let i = 0; i < this.equations.length; i++) {
       //   console.log(this.equations[i]);
       // }
+    },
+  },
+  computed: {
+    isUserLoggedIn() {
+      return this.$store.state.currentUser.userId !== null;
     },
   },
 };

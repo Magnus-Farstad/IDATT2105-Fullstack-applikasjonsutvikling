@@ -3,10 +3,13 @@
     {{ $store.state.flashMessage }}
   </div>
   <div id="nav">
-    <router-link :to="{ name: 'Home' }">Home</router-link> |
-    <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
-    <router-link :to="{ name: 'About' }">About</router-link> |
-    <router-link :to="{ name: 'LogIn' }">Log in</router-link>
+    <div class="currentUser">{{ $store.state.currentUser.userId }}</div>
+    <div>
+      <router-link :to="{ name: 'Home' }">Home</router-link> |
+      <router-link :to="{ name: 'ContactForm' }">Contact</router-link> |
+      <router-link :to="{ name: 'About' }">About</router-link> |
+      <router-link :to="{ name: 'LogIn' }">Log in</router-link>
+    </div>
   </div>
   <router-view />
 </template>
@@ -25,6 +28,10 @@ body {
   align-items: center;
 }
 
+.currentUser {
+  margin-right: 3rem;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -40,6 +47,10 @@ body {
 
 #nav {
   padding: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 #nav a {
