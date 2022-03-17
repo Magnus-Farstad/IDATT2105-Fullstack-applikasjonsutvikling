@@ -1,7 +1,5 @@
 package student.ntnu.no.oving_5.model.login;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class User {
     private int user_id;
     private String username;
