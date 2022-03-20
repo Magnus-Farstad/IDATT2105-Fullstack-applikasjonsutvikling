@@ -23,3 +23,11 @@ export function doCalculation(calculation, id) {
       return response.data;
     });
 }
+
+export function getAllCalculations() {
+  return axios
+    .get("http://localhost:8085/calculator/calculations")
+    .then((response) => {
+      return response.data;
+    });
+}

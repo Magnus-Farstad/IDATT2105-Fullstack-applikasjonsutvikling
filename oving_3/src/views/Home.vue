@@ -3,18 +3,27 @@
     <div class="headerContainer">
       <h1 class="header">Calculator</h1>
     </div>
-    <div id="calculatorContainer" v-show="isUserLoggedIn">
+    <div id="calculatorContainer">
       <calculator @add-equations="addEquation"></calculator>
       <log :equations="equations"></log>
     </div>
+    <button class="viewCalculationsButton" @click="getAllCalculations">
+      View previous calculations
+    </button>
+    <div
+      class="previousCalculations"
+      v-for="(calculation, index) in calculations"
+      :key="index"
+    >{{ calculation.calculation }}</div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+// @ is an alias to /src v-show="isUserLoggedIn"
 //import HelloWorld from "@/components/HelloWorld.vue";
 import Calculator from "@/components/Calculator.vue";
 import Log from "@/components/Log.vue";
+import { getAllCalculations } from "@/utils/apiutils";
 
 export default {
   name: "Home",
@@ -25,6 +34,7 @@ export default {
   data() {
     return {
       equations: [],
+      calculations: [],
     };
   },
   methods: {
@@ -34,6 +44,10 @@ export default {
       // for (let i = 0; i < this.equations.length; i++) {
       //   console.log(this.equations[i]);
       // }
+    },
+    async getAllCalculations() {
+      let response = await getAllCalculations();
+      this.calculations = response;
     },
   },
   computed: {
@@ -59,6 +73,7 @@ body {
     "empty zero point equals"
     "log log log log";
   background-color: #eee;
+  position: relative;
   padding: 7px;
   height: 70%;
   margin: 0 auto;
@@ -80,6 +95,9 @@ body {
   font-size: 50px;
   font-weight: 900;
   margin: 15px;
+}
+.viewCalculationsButton {
+  margin: 2rem;
 }
 
 .text {
