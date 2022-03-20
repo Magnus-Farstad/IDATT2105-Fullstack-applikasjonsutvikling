@@ -1,4 +1,4 @@
-package student.ntnu.no.oving_5.model;
+package student.ntnu.no.oving_5.model.calculation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ public class Calculation {
     private double second;
     private double answer;
     private List<String> calculations = new ArrayList<String>();
+    private String calculation;
 
     public Calculation() {
 
@@ -19,6 +20,22 @@ public class Calculation {
         this.operation = operation;
         this.second = second;
         this.answer = answer;
+    }
+
+    public Calculation(double first, String operation, double second, double answer, String calculation) {
+        this.first = first;
+        this.operation = operation;
+        this.second = second;
+        this.answer = answer;
+        this.calculation = calculation;
+    }
+
+    public String getCalculation() {
+        return calculation;
+    }
+
+    public void setCalculation(String calculation) {
+        this.calculation = calculation;
     }
 
     public double getAnswer() {

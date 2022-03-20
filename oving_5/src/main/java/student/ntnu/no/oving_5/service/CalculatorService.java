@@ -1,12 +1,14 @@
 package student.ntnu.no.oving_5.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import student.ntnu.no.oving_5.model.Calculation;
+import student.ntnu.no.oving_5.model.calculation.Calculation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import student.ntnu.no.oving_5.repository.JdbcCalculationRepository;
+
+import java.util.List;
 
 @Service
 public class CalculatorService {
@@ -67,5 +69,9 @@ public class CalculatorService {
         logger.info("CalculatorService");
         String calc = calculation.getFirst() + calculation.getOperation() + calculation.getSecond() + "=" + calculation.getAnswer();
         return jdbcCalculationRepository.saveCalculation(id, calc);
+    }
+
+    public List<Calculation> getAllCalculations() {
+        return jdbcCalculationRepository.getAllCalculations();
     }
 }
