@@ -71,7 +71,7 @@ public class CalculatorService {
         return jdbcCalculationRepository.saveCalculation(id, calc);
     }
 
-    public List<Calculation> getAllCalculations() {
-        return jdbcCalculationRepository.getAllCalculations();
+    public List<Calculation> getAllCalculations(int id) {
+        return jdbcCalculationRepository.getAllCalculations(id);
     }
 }

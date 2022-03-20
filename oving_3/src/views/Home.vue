@@ -3,23 +3,27 @@
     <div class="headerContainer">
       <h1 class="header">Calculator</h1>
     </div>
-    <div id="calculatorContainer">
+    <div id="calculatorContainer" v-show="isUserLoggedIn">
       <calculator @add-equations="addEquation"></calculator>
       <log :equations="equations"></log>
     </div>
-    <button class="viewCalculationsButton" @click="getAllCalculations">
-      View previous calculations
-    </button>
-    <div
-      class="previousCalculations"
-      v-for="(calculation, index) in calculations"
-      :key="index"
-    >{{ calculation.calculation }}</div>
+    <div v-show="isUserLoggedIn">
+      <button class="viewCalculationsButton" @click="getAllCalculations">
+        View previous calculations
+      </button>
+      <div
+        class="previousCalculations"
+        v-for="(calculation, index) in calculations"
+        :key="index"
+      >
+        {{ calculation.calculation }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src v-show="isUserLoggedIn"
+// @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 import Calculator from "@/components/Calculator.vue";
 import Log from "@/components/Log.vue";
@@ -46,7 +50,9 @@ export default {
       // }
     },
     async getAllCalculations() {
-      let response = await getAllCalculations();
+      console.log(typeof this.$store.state.currentUser.userId);
+      let currentUserId = this.$store.state.currentUser.userId;
+      let response = await getAllCalculations(currentUserId);
       this.calculations = response;
     },
   },

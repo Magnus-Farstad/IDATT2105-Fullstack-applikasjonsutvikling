@@ -24,8 +24,9 @@ public class JdbcCalculationRepository {
                 new Object[] {calculation, userId});
     }
 
-    public List<Calculation> getAllCalculations() {
-        List<Calculation> calculations = jdbcTemplate.query("SELECT calculation FROM calculation", BeanPropertyRowMapper.newInstance(Calculation.class));
+    public List<Calculation> getAllCalculations(int id) {
+        System.out.println("Repository");
+        List<Calculation> calculations = jdbcTemplate.query("SELECT calculation FROM calculation WHERE user_id = ?", BeanPropertyRowMapper.newInstance(Calculation.class), id);
         calculations.forEach(System.out::println);
         return calculations;
     }

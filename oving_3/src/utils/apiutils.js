@@ -24,9 +24,9 @@ export function doCalculation(calculation, id) {
     });
 }
 
-export function getAllCalculations() {
+export function getAllCalculations(id) {
   return axios
-    .get("http://localhost:8085/calculator/calculations")
+    .post("http://localhost:8085/calculator/calculations/" + id)
     .then((response) => {
       return response.data;
     });

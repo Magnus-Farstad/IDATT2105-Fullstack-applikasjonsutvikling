@@ -27,7 +27,7 @@ public class CalculationController {
 
     @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Calculation calculate(@RequestBody Calculation calculation,@PathVariable("id") int id) {
+    public Calculation calculate(@RequestBody Calculation calculation, @PathVariable("id") int id) {
         logger.trace("PostMapping('/calculator') calculate() was called");
         String calc = calculation.getFirst() + calculation.getOperation() + calculation.getSecond() + "=" + calculation.getAnswer();
         logger.info(calc);
@@ -66,11 +66,12 @@ public class CalculationController {
         }
     }
 
-    @GetMapping("/calculations")
-    public ResponseEntity<List<Calculation>> getAllCalculations() {
+    @PostMapping("/calculations/{id}")
+    public ResponseEntity<List<Calculation>> getAllCalculations(@PathVariable("id") int id) {
+        System.out.println("getAllCalculations()");
         try {
             List<Calculation> calculations = new ArrayList<Calculation>();
-            service.getAllCalculations().forEach(calculations::add);
+            service.getAllCalculations(id).forEach(calculations::add);
 
             if (calculations.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
