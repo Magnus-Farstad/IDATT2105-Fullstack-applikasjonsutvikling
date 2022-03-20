@@ -3,7 +3,8 @@
 ## Info
 ```
 This is one of the mandatory assignments in the course IDATT2105 Full-stack applikasjonsutvikling.
-The calculator is imported from oving_2, and expanded with a contact form, login and testing.
+The calculator is imported from oving_2, and expanded with a contact form, login, registration and testing.
+This project serves as the client frontend with different backend servers created with spring boot.
 ```
 
 ### Check out my socials!
