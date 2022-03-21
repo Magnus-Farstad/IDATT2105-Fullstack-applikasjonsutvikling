@@ -4,6 +4,7 @@ import ContactForm from "../views/Contact.vue";
 import About from "../views/About.vue";
 import LogIn from "@/views/LogIn";
 import Register from "@/views/Register";
+import NotFound from "@/views/NotFound";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/register",
     name: "Register",
     component: Register,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 

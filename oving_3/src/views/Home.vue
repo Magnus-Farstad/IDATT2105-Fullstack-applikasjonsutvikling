@@ -3,21 +3,27 @@
     <div class="headerContainer">
       <h1 class="header">Calculator</h1>
     </div>
-    <div id="calculatorContainer" v-show="isUserLoggedIn">
-      <calculator @add-equations="addEquation"></calculator>
-      <log :equations="equations"></log>
-    </div>
-    <div v-show="isUserLoggedIn">
-      <button class="viewCalculationsButton" @click="getAllCalculations">
-        View previous calculations
-      </button>
-      <div
-        class="previousCalculations"
-        v-for="(calculation, index) in calculations"
-        :key="index"
-      >
-        {{ calculation.calculation }}
+    <div id="container" v-if="isUserLoggedIn">
+      <div id="calculatorContainer">
+        <calculator @add-equations="addEquation"></calculator>
+        <log :equations="equations"></log>
       </div>
+      <div>
+        <button class="viewCalculationsButton" @click="getAllCalculations">
+          View previous calculations
+        </button>
+        <div
+          class="previousCalculations"
+          v-for="(calculation, index) in calculations"
+          :key="index"
+        >
+          {{ calculation.calculation }}
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <h2>Welcome to my calculator!</h2>
+      <div>Log in to start using the calculator</div>
     </div>
   </div>
 </template>
@@ -82,17 +88,13 @@ body {
     "empty zero point equals"
     "log log log log";
   background-color: #eee;
-  position: relative;
   padding: 7px;
   height: 70%;
   margin: 0 auto;
-  text-align: center;
   width: 30%;
   font-size: 35px;
-  grid-auto-rows: minmax(50px, auto);
   box-shadow: 0 0 16px #363535;
   border-radius: 10px;
-  align-items: center;
 }
 
 .headerContainer {
@@ -103,7 +105,7 @@ body {
 .header {
   font-size: 50px;
   font-weight: 900;
-  margin: 15px;
+  margin: 5px;
 }
 .viewCalculationsButton {
   margin: 2rem;
