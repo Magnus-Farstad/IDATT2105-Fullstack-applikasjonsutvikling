@@ -63,7 +63,7 @@ export default {
           phone: this.phone,
         };
 
-        let registerResponse = await doRegistration(user);
+        let registerResponse = await doRegistration(user, this.$store.state.jwtToken);
         console.log(registerResponse.registerStatus);
 
         if (registerResponse.registerStatus === "Register was Successful!") {

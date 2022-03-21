@@ -124,7 +124,8 @@ export default {
         let currentUserId = this.$store.state.currentUser.userId;
         let calculationResponse = await doCalculation(
           equationObject,
-          currentUserId
+          currentUserId,
+          this.$store.state.jwtToken
         );
         console.log("Calculation response: " + calculationResponse.answer);
 

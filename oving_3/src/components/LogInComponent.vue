@@ -27,6 +27,7 @@
 
 <script>
 import { doLogin } from "@/utils/apiutils";
+import { getJwtToken } from "@/utils/apiutils";
 
 export default {
   name: "LoginComponent",
@@ -34,7 +35,14 @@ export default {
     async handleClickSignin() {
       const loginRequest = { username: this.username, password: this.password };
       this.handleClickSignin2();
-      const loginResponse = await doLogin(loginRequest);
+
+      const tokenResponse = await getJwtToken("admin", "password");
+      this.$store.dispatch("addJwtToken", tokenResponse);
+
+      const loginResponse = await doLogin(
+        loginRequest,
+        this.$store.state.jwtToken
+      );
       console.log("Login " + loginResponse.loginStatus);
       console.log("Login id: " + loginResponse.user_id);
       //this.loginstatus = loginResponse.loginStatus;

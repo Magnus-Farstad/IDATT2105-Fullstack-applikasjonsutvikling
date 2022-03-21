@@ -6,6 +6,7 @@ export default createStore({
     status: "",
     flashMessage: "",
     loginStatus: "",
+    jwtToken: null,
     userLoggedIn: false,
     currentUser: {
       userId: null,
@@ -40,6 +41,9 @@ export default createStore({
       state.userLoggedIn = false;
       state.loginStatus = "";
     },
+    SET_TOKEN(state, token) {
+      state.jwtToken = token;
+    },
   },
   actions: {
     createReview({ commit }, review) {
@@ -59,6 +63,9 @@ export default createStore({
     },
     logOutUser({ commit }) {
       commit("REMOVE_USER");
+    },
+    addJwtToken({ commit }, token) {
+      commit("SET_TOKEN", token);
     },
   },
   getters: {

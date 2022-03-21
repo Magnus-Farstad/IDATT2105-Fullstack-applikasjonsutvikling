@@ -52,7 +52,10 @@ export default {
     async getAllCalculations() {
       console.log(typeof this.$store.state.currentUser.userId);
       let currentUserId = this.$store.state.currentUser.userId;
-      let response = await getAllCalculations(currentUserId);
+      let response = await getAllCalculations(
+        currentUserId,
+        this.$store.state.jwtToken
+      );
       this.calculations = response;
     },
   },
