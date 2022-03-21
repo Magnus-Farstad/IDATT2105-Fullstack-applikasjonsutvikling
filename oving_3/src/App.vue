@@ -79,6 +79,7 @@ body {
 #nav a.router-link-exact-active {
   color: white;
   background: crimson;
+  font-weight: bolder;
 }
 
 .button-24 {

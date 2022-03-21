@@ -1,7 +1,7 @@
 <template>
   <div id="scrollBox" class="log">
     <ul id="arrayUnorderedList">
-      <li v-for="(equation, index) in equations" :key="index">
+      <li class="item" v-for="(equation, index) in equations" :key="index">
         {{ equation }}
       </li>
     </ul>
@@ -24,10 +24,15 @@ export default {
 #scrollBox {
   overflow: auto;
   border: solid black;
+  color: white;
   margin-top: 10px;
-  height: 250px;
-  background-color: rgba(255, 165, 0, 0.14);
+  height: 200px;
+  background-color: #524A4E;
   border-radius: 5px;
+}
+
+.item {
+  font-size: 25px;
 }
 
 .log {

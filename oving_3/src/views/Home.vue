@@ -12,12 +12,14 @@
         <button class="viewCalculationsButton" @click="getAllCalculations">
           View previous calculations
         </button>
-        <div
-          class="previousCalculations"
-          v-for="(calculation, index) in calculations"
-          :key="index"
-        >
-          {{ calculation.calculation }}
+
+        <div class="previousCalculationsContainer">
+          <div v-for="(calculation, index) in calculations" :key="index">
+            <PreviousCalculation
+              class="previousCalculations"
+              :calculation="calculation"
+            ></PreviousCalculation>
+          </div>
         </div>
       </div>
     </div>
@@ -33,6 +35,7 @@
 //import HelloWorld from "@/components/HelloWorld.vue";
 import Calculator from "@/components/Calculator.vue";
 import Log from "@/components/Log.vue";
+import PreviousCalculation from "@/components/PreviousCalculation";
 import { getAllCalculations } from "@/utils/apiutils";
 
 export default {
@@ -40,6 +43,7 @@ export default {
   components: {
     Calculator,
     Log,
+    PreviousCalculation,
   },
   data() {
     return {
@@ -56,7 +60,6 @@ export default {
       // }
     },
     async getAllCalculations() {
-      console.log(typeof this.$store.state.currentUser.userId);
       let currentUserId = this.$store.state.currentUser.userId;
       let response = await getAllCalculations(
         currentUserId,
@@ -89,9 +92,9 @@ body {
     "log log log log";
   background-color: #eee;
   padding: 7px;
-  height: 70%;
+  height: 65%;
   margin: 0 auto;
-  width: 30%;
+  width: 372px;
   font-size: 35px;
   box-shadow: 0 0 16px #363535;
   border-radius: 10px;
@@ -109,6 +112,19 @@ body {
 }
 .viewCalculationsButton {
   margin: 2rem;
+}
+
+.previousCalculationsContainer {
+  background: #524A4E;
+  max-width: 372px;
+  margin: 0 auto;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 16px #363535;
+}
+
+.previousCalculations {
+  margin-bottom: 5px;
 }
 
 .text {
