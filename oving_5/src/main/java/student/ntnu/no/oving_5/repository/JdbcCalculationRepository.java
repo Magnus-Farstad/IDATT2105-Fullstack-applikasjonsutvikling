@@ -26,8 +26,14 @@ public class JdbcCalculationRepository {
 
     public List<Calculation> getAllCalculations(int id) {
         System.out.println("Repository");
-        List<Calculation> calculations = jdbcTemplate.query("SELECT calculation FROM calculation WHERE user_id = ? LIMIT 10", BeanPropertyRowMapper.newInstance(Calculation.class), id);
+        List<Calculation> calculations = jdbcTemplate.query("SELECT * FROM calculation WHERE user_id = ?", BeanPropertyRowMapper.newInstance(Calculation.class), id);
         calculations.forEach(System.out::println);
         return calculations;
+    }
+
+    public int deleteCalculation(int id) {
+        logger.info("Deleting calculation...");
+        return jdbcTemplate.update("DELETE FROM calculation WHERE id = ?",
+                id);
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculation {
+    private int id;
     private double first;
     private String operation;
     private double second;
@@ -76,5 +77,13 @@ public class Calculation {
 
     public void setSecond(double second) {
         this.second = second;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

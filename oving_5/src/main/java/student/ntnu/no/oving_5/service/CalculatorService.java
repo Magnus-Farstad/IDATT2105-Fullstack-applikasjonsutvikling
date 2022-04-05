@@ -74,4 +74,9 @@ public class CalculatorService {
     public List<Calculation> getAllCalculations(int id) {
         return jdbcCalculationRepository.getAllCalculations(id);
     }
+
+    public int deleteCalculation(int id) {
+        logger.info("Service: Deleting calculation");
+        return jdbcCalculationRepository.deleteCalculation(id);
+    }
 }

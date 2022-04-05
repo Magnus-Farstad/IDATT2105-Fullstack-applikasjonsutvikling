@@ -82,4 +82,10 @@ public class CalculationController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    public int deleteCalculation(@PathVariable("id") int id) {
+        logger.info("Deleting calculation " + id);
+        return service.deleteCalculation(id);
+    }
 }
