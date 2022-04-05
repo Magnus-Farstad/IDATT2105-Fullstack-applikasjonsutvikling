@@ -14,11 +14,20 @@
         </button>
 
         <div class="previousCalculationsContainer">
-          <div v-for="(calculation, index) in calculations" :key="index">
-            <PreviousCalculation
-              class="previousCalculations"
-              :calculation="calculation"
-            ></PreviousCalculation>
+          <div
+            class="row"
+            v-for="(calculation, index) in calculations"
+            :key="index"
+          >
+            <span id="deleteContainer">
+              <span @click="deleteCalculation(calculation.id)" id="delete">x</span>
+            </span>
+            <span>
+              <PreviousCalculation
+                class="previousCalculations"
+                :calculation="calculation"
+              ></PreviousCalculation>
+            </span>
           </div>
         </div>
       </div>
@@ -36,7 +45,7 @@
 import Calculator from "@/components/Calculator.vue";
 import Log from "@/components/Log.vue";
 import PreviousCalculation from "@/components/PreviousCalculation";
-import { getAllCalculations } from "@/utils/apiutils";
+import { deleteCalculation, getAllCalculations } from "@/utils/apiutils";
 
 export default {
   name: "Home",
@@ -65,6 +74,11 @@ export default {
         currentUserId,
         this.$store.state.jwtToken
       );
+      this.calculations = response;
+    },
+    async deleteCalculation(id) {
+      await deleteCalculation(id, this.$store.state.jwtToken);
+      const response = getAllCalculations(this.$store.state.currentUser.userId, this.$store.state.jwtToken);
       this.calculations = response;
     },
   },
@@ -115,7 +129,7 @@ body {
 }
 
 .previousCalculationsContainer {
-  background: #524A4E;
+  background: #524a4e;
   max-width: 372px;
   margin: 0 auto;
   padding: 10px 0;
@@ -125,6 +139,33 @@ body {
 
 .previousCalculations {
   margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 20% 60%;
+  margin: 0 auto;
+}
+
+#deleteContainer {
+  color: white;
+  padding: 10px;
+  padding-top: 13px;
+}
+#delete {
+  border: solid black 1px;
+  border-radius: 50%;
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#delete:hover {
+  background: black;
+  cursor: pointer;
+}
+#delete:hover .previousCalculations {
+  transform: scale(1.5);
 }
 
 .text {

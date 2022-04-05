@@ -60,3 +60,15 @@ export function getJwtToken(username, password) {
       return response.data;
     });
 }
+
+export function deleteCalculation(id, token) {
+  return axios
+    .delete("http://localhost:8085/calculator/delete/" + id, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+}
