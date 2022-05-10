@@ -20,7 +20,9 @@
             :key="index"
           >
             <span id="deleteContainer">
-              <span @click="deleteCalculation(calculation.id)" id="delete">x</span>
+              <span @click="deleteCalculation(calculation.id)" id="delete"
+                >x</span
+              >
             </span>
             <span>
               <PreviousCalculation
@@ -70,16 +72,17 @@ export default {
     },
     async getAllCalculations() {
       let currentUserId = this.$store.state.currentUser.userId;
-      let response = await getAllCalculations(
+      this.calculations = await getAllCalculations(
         currentUserId,
         this.$store.state.jwtToken
       );
-      this.calculations = response;
     },
     async deleteCalculation(id) {
       await deleteCalculation(id, this.$store.state.jwtToken);
-      const response = getAllCalculations(this.$store.state.currentUser.userId, this.$store.state.jwtToken);
-      this.calculations = response;
+      this.calculations = await getAllCalculations(
+        this.$store.state.currentUser.userId,
+        this.$store.state.jwtToken
+      );
     },
   },
   computed: {
@@ -166,8 +169,5 @@ body {
 }
 #delete:hover .previousCalculations {
   transform: scale(1.5);
-}
-
-.text {
 }
 </style>
