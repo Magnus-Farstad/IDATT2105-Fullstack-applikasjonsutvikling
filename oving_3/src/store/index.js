@@ -40,6 +40,7 @@ export default createStore({
       state.currentUser.name = null;
       state.userLoggedIn = false;
       state.loginStatus = "";
+      state.jwtToken = null;
     },
     SET_TOKEN(state, token) {
       state.jwtToken = token;

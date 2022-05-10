@@ -13,7 +13,7 @@
       <router-link :to="{ name: 'LogIn' }" v-if="!$store.state.userLoggedIn"
         >Log in
       </router-link>
-      <button class="button-24" v-else @click="logOut">Log out</button>
+      <button class="logOutButton" v-else @click="logOut">Log out</button>
     </div>
   </div>
   <router-view />
@@ -118,12 +118,18 @@ body {
 }
 
 .logOutButton {
-  color: white;
+  border: none;
+  color: #2c3e50;
   font-weight: bold;
-  padding: 5px;
+  font-size: 16px;
+  padding: 10px;
   margin-left: 10px;
   cursor: pointer;
-  background: crimson;
+  background: white;
   border-radius: 5px;
+}
+.logOutButton:hover {
+  background: crimson;
+  color: white;
 }
 </style>
