@@ -26,6 +26,9 @@ export default {
       this.$store.dispatch("logOutUser");
     },
   },
+  created() {
+    this.$store.commit("RESTORE_USER");
+  },
 };
 </script>
 
@@ -131,5 +134,6 @@ body {
 .logOutButton:hover {
   background: crimson;
   color: white;
+  cursor: pointer;
 }
 </style>

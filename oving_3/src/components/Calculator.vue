@@ -121,7 +121,7 @@ export default {
         };
         console.log(equationObject);
 
-        let currentUserId = this.$store.state.currentUser.userId;
+        let currentUserId = this.$store.state.currentUser.user_id;
         let calculationResponse = await doCalculation(
           equationObject,
           currentUserId,
@@ -173,9 +173,9 @@ export default {
 
 .button:active {
   background: #e5e5e5;
-  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
-  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
-  box-shadow: inset 0px 0px 5px #c1c1c1;
+  -webkit-box-shadow: inset 0 0 5px #c1c1c1;
+  -moz-box-shadow: inset 0 0 5px #c1c1c1;
+  box-shadow: inset 0 0 5px #c1c1c1;
   outline: none;
 }
 

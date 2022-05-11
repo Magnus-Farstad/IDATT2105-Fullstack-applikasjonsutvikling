@@ -9,7 +9,7 @@ export default {
   name: "PreviousCalculation",
   props: {
     calculation: {
-      type: String,
+      type: Object,
     },
   },
 };

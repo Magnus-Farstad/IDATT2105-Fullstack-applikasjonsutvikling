@@ -9,8 +9,8 @@ export default createStore({
     jwtToken: null,
     userLoggedIn: false,
     currentUser: {
-      userId: null,
-      userName: null,
+      user_id: null,
+      username: null,
       name: null,
     },
   },
@@ -36,7 +36,9 @@ export default createStore({
     },
     REMOVE_USER(state) {
       state.currentUser.userId = null;
+      state.currentUser.user_id = null;
       state.currentUser.userName = null;
+      state.currentUser.username = null;
       state.currentUser.name = null;
       state.userLoggedIn = false;
       state.loginStatus = "";
@@ -44,6 +46,17 @@ export default createStore({
     },
     SET_TOKEN(state, token) {
       state.jwtToken = token;
+    },
+    RESTORE_USER(state) {
+      const tokenString = localStorage.getItem("token");
+      const userString = localStorage.getItem("user");
+      if (tokenString && userString) {
+        state.userLoggedIn = true;
+        state.jwtToken = JSON.parse(tokenString);
+        const currentUser = JSON.parse(userString);
+        state.currentUser = currentUser;
+        state.loginStatus = currentUser.loginStatus;
+      }
     },
   },
   actions: {
@@ -61,12 +74,16 @@ export default createStore({
     },
     updateCurrentUser({ commit }, loginresponse) {
       commit("SET_CURRENT_USER", loginresponse);
+      localStorage.setItem("user", JSON.stringify(loginresponse));
     },
     logOutUser({ commit }) {
       commit("REMOVE_USER");
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     },
     addJwtToken({ commit }, token) {
       commit("SET_TOKEN", token);
+      localStorage.setItem("token", JSON.stringify(token));
     },
   },
   getters: {

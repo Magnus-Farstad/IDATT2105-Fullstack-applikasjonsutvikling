@@ -69,18 +69,24 @@ export default {
       // for (let i = 0; i < this.equations.length; i++) {
       //   console.log(this.equations[i]);
       // }
+      this.getAllCalculations();
     },
     async getAllCalculations() {
-      let currentUserId = this.$store.state.currentUser.userId;
-      this.calculations = await getAllCalculations(
+      let currentUserId = this.$store.state.currentUser.user_id;
+      let calculations = await getAllCalculations(
         currentUserId,
         this.$store.state.jwtToken
       );
+      if (calculations.length > 0) {
+        this.calculations = calculations.reverse();
+      } else {
+        this.calculations = calculations;
+      }
     },
     async deleteCalculation(id) {
       await deleteCalculation(id, this.$store.state.jwtToken);
       this.calculations = await getAllCalculations(
-        this.$store.state.currentUser.userId,
+        this.$store.state.currentUser.user_id,
         this.$store.state.jwtToken
       );
     },
@@ -128,6 +134,14 @@ body {
   margin: 5px;
 }
 .viewCalculationsButton {
+  border: none;
+  background: crimson;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
   margin: 2rem;
 }
 
