@@ -13,7 +13,10 @@
           View previous calculations
         </button>
 
-        <div class="previousCalculationsContainer">
+        <div v-if="calculationsExist" class="previousCalculationsContainer">
+          <div class="exitContainer">
+            <span @click="exitDropDown" id="exitDropDown">x</span>
+          </div>
           <div
             class="row"
             v-for="(calculation, index) in calculations"
@@ -69,7 +72,9 @@ export default {
       // for (let i = 0; i < this.equations.length; i++) {
       //   console.log(this.equations[i]);
       // }
-      this.getAllCalculations();
+      if (this.calculationsExist) {
+        this.getAllCalculations();
+      }
     },
     async getAllCalculations() {
       let currentUserId = this.$store.state.currentUser.user_id;
@@ -90,10 +95,16 @@ export default {
         this.$store.state.jwtToken
       );
     },
+    exitDropDown() {
+      this.calculations = [];
+    },
   },
   computed: {
     isUserLoggedIn() {
       return this.$store.state.userLoggedIn;
+    },
+    calculationsExist() {
+      return this.calculations.length > 0;
     },
   },
 };
@@ -164,18 +175,31 @@ body {
   grid-template-columns: 20% 60%;
   margin: 0 auto;
 }
+.exitContainer {
+  display: flex;
+  justify-content: right;
+}
 
+#exitDropDown {
+  border-radius: 50%;
+  font-size: 14px;
+  color: white;
+  padding: 2px 5px;
+  margin-right: 1rem;
+  transition: ease-in-out 0.3s;
+}
+#exitDropDown:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
 #deleteContainer {
   color: white;
-  padding: 10px;
-  padding-top: 13px;
+  padding: 13px 10px 10px;
 }
 #delete {
   border: solid black 1px;
   border-radius: 50%;
-  padding: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 10px 15px;
 }
 #delete:hover {
   background: black;

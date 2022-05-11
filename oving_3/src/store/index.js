@@ -29,15 +29,13 @@ export default createStore({
       console.log("From inside store " + state.loginStatus);
     },
     SET_CURRENT_USER(state, loginresponse) {
-      state.currentUser.userId = loginresponse.user_id;
-      state.currentUser.userName = loginresponse.username;
+      state.currentUser.user_id = loginresponse.user_id;
+      state.currentUser.username = loginresponse.username;
       state.currentUser.name = loginresponse.name;
       state.userLoggedIn = true;
     },
     REMOVE_USER(state) {
-      state.currentUser.userId = null;
       state.currentUser.user_id = null;
-      state.currentUser.userName = null;
       state.currentUser.username = null;
       state.currentUser.name = null;
       state.userLoggedIn = false;
