@@ -1,13 +1,21 @@
 <template>
   <div class="container">
-    <div class="aboutMe">
+    <div
+      @click="toggleColor"
+      :class="{ containerAlternative: colorClass }"
+      class="aboutMe box"
+    >
       <h1>Who am I?</h1>
       <p>
         I am a student at NTNU, Trondheim Norway. Currently I am in my second
         year of my Bachelor of Engineering in Computer Science.
       </p>
     </div>
-    <div class="aboutProject">
+    <div
+      @click="toggleColor"
+      :class="{ containerAlternative: colorClass }"
+      class="aboutProject box"
+    >
       <h1>What is this project?</h1>
       <p>
         This is part of the mandatory assignments in the course Full-stack
@@ -18,6 +26,20 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      colorClass: false,
+    };
+  },
+  methods: {
+    toggleColor() {
+      this.colorClass = !this.colorClass;
+    },
+  },
+};
+</script>
 <style scoped>
 div {
   background: white;
@@ -32,12 +54,33 @@ p {
   line-height: 1.5;
 }
 
+@keyframes rotate-hue {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+  50% {
+    filter: hue-rotate(600deg);
+  }
+}
+
+.box {
+  transition: 0.2s ease-in-out;
+}
+.box:hover {
+  transform: translateY(-4px);
+  cursor: pointer;
+}
 .container {
+  color: black;
   background: none;
   box-shadow: none;
   margin: 0 auto;
 }
+.containerAlternative {
+  animation: rotate-hue 5s alternate infinite;
+  background: lightblue;
+}
 .aboutProject {
-  margin-top: 3rem;
+  margin: 3rem 0 0 0;
 }
 </style>
